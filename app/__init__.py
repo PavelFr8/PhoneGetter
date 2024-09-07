@@ -40,7 +40,7 @@ def create_app():
     app.register_blueprint(errors.module)
 
     # register all app modules
-    import app.modules.menu as menu
-    app.register_blueprint(menu.module)
+    import app.modules.main as main
+    app.register_blueprint(main.module)
 
     return app

@@ -6,4 +6,4 @@ from . import module
 # Create a main page
 @module.route('/')
 def index():
-    return render_template('menu/tmp.html')
+    return render_template('base.html', title='Menu')
