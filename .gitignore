@@ -21,5 +21,6 @@ local/*
 venv/*
 
 .env
+.flaskenv
 /migrations/
 /instance/

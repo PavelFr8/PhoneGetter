@@ -43,4 +43,7 @@ def create_app():
     import app.modules.main as main
     app.register_blueprint(main.module)
 
+    import app.modules.settings as settings
+    app.register_blueprint(settings.module)
+
     return app
