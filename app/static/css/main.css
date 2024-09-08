@@ -31,6 +31,7 @@ body {
     position: relative;
     z-index: 2;
     padding: 20px;
+    width: 80%;
 }
 
 .about-section h1 {
@@ -58,7 +59,7 @@ body {
 .device-img {
     transition: transform 0.3s ease;
     width: 400px;
-    height: 400px;
+    height: auto;
     border-radius: 30px;
     margin: 0 auto; /* Center the image horizontally */
 }
@@ -190,8 +191,7 @@ body {
 }
 
 .feature-list {
-    margin-left: 20px;
-    list-style-type: circle;
+    font-size: 1.1rem;
 }
 
 .card {
@@ -252,6 +252,19 @@ body {
     .image-sticky, .image-bottom-right {
         display: None;
     }
+    .device-text {
+        margin-top: 30px;
+    }
+    .about-section h1{
+        font-size: 2.5rem;
+    }
+    .about-section p{
+        font-size: 1rem;
+    }
+    .about-section .content {
+        width: auto;
+    }
+
 }
 
 @keyframes fadeInUp {

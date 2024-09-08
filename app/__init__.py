@@ -46,4 +46,10 @@ def create_app():
     import app.modules.settings as settings
     app.register_blueprint(settings.module)
 
+    import app.modules.phone as phone
+    app.register_blueprint(phone.module)
+
+    import app.modules.classes as classes
+    app.register_blueprint(classes.module)
+
     return app

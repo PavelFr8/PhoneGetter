@@ -13,7 +13,7 @@
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
     <!-- About Section -->
     <section class="about-section text-center" style="background-image: url('{{ url_for('static', filename='img/main/back2.jpg') }}');">
-        <div class="container content" style="width: 80%;">
+        <div class="container content">
             <h1>About Us</h1>
             <p>We are a small teem of two students who don't want to get "2" by Project. Our teem works hard and
                 believes that one day we finally will be able to use Raspberry. To be honest, while writing this words
@@ -22,6 +22,7 @@
         </div>
     </section>
 
+    <!-- Why Us Section -->
     <div class="section-why-us">
         <div class="content-wrapper">
             <div class="text-content">
@@ -66,7 +67,7 @@
                     <img src="{{ url_for('static', filename='img/main/device.jpg') }}" alt="Our Device" class="img-fluid shadow-sm device-img">
                 </div>
                 <div class="col-md-6">
-                    <h2 class="mb-4">Our Device</h2>
+                    <h2 class="mb-4 device-text">Our Device</h2>
                     <p>Our device is designed to provide seamless and secure monitoring of all your communications. Built with cutting-edge technology, it ensures that you have complete control and visibility over your phone activities. Whether it's for personal safety or business management, our device offers unmatched reliability and performance.</p>
                 </div>
             </div>
@@ -109,14 +110,13 @@
         </div>
     </section>
 
-
-<!-- Register Button -->
-<div class="text-center my-5">
-    <a href="#" class="register-btn shadow-lg">
-        <span class="btn-text">Register Now</span>
-        <i class="bi bi-arrow-right-circle-fill ms-2"></i>
-    </a>
-</div>
+    <!-- Register Button -->
+    <div class="text-center my-5">
+        <a href="#" class="register-btn shadow-lg">
+            <span class="btn-text">Register Now</span>
+            <i class="bi bi-arrow-right-circle-fill ms-2"></i>
+        </a>
+    </div>
 
 </body>
 {% endblock %}
