@@ -5,5 +5,5 @@ from . import module
 
 # Create a main page
 @module.route('/')
-def index():
-    return render_template('base.html', title='Menu')
+def main():
+    return render_template('main/main.html', title='About Us')
