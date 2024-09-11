@@ -52,4 +52,7 @@ def create_app():
     import app.modules.classes as classes
     app.register_blueprint(classes.module)
 
+    import app.modules.register as register
+    app.register_blueprint(register.module)
+
     return app

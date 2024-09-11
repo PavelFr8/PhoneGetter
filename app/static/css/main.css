@@ -61,12 +61,12 @@ body {
     width: 400px;
     height: auto;
     border-radius: 30px;
-    margin: 0 auto; /* Center the image horizontally */
+    margin: 0 auto;
 }
 
 .device-section .row {
     display: flex;
-    justify-content: center; /* Center content in row */
+    justify-content: center;
 }
 
 .device-section h2 {
@@ -101,7 +101,7 @@ body {
 
 .icon-container {
     font-size: 3rem;
-    color: black; /* Устанавливает цвет иконок в черный */
+    color: black;
 }
 
 .benefit-card h4 {
@@ -128,7 +128,7 @@ body {
 }
 
 .benefit-card:hover .icon-container i {
-    color: #6a11cb; /* Change icon color on hover */
+    color: #6a11cb;
 }
 
 .benefit-card h4 {
@@ -265,15 +265,4 @@ body {
         width: auto;
     }
 
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
