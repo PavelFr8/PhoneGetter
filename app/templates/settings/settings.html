@@ -1,4 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Settings :)</h1>
+{% if current_user.is_authenticated %}
+    <h3>Name: {{ current_user.name }}</h3>
+    <h3>Surname: {{ current_user.surname }}</h3>
+    <h3>Date of birth: {{ current_user.date_of_birth }}</h3>
+    <h3>Email: {{ current_user.email }}</h3>
+    <a href="{{ url_for('register.logout') }}">Log out</a>
+
+{% endif %}
 {% endblock %}

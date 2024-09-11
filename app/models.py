@@ -12,6 +12,9 @@ from app import db
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
+    name = sa.Column(sa.String, nullable=False)
+    surname = sa.Column(sa.String, nullable=False)
+    date_of_birth = sa.Column(sa.Date, nullable=False)
     email = sa.Column(sa.String, unique=True, nullable=False, index=True)
     hashed_password = sa.Column(sa.String, nullable=False)
     created_date = sa.Column(sa.DateTime, default=datetime.datetime.now)
