@@ -11,8 +11,8 @@
 <main class="form-signin w-100 m-auto">
   <form action="" method="post">
     {{ form.hidden_tag() }}
-    <a href="/"><img src="{{ url_for('static', filename='img/base/logo.png') }}" width="200px"></a>
-    <h1 class="h3 mb-3 mt-3 fw-normal">Sign Up</h1>
+    <a href="/"><img src="{{ url_for('static', filename='img/base/logo.png') }}" width="180px"></a>
+    <h1 class="mb-4 mt-4 text1">Sign Up</h1>
 
     <div class="form-floating">
         {{ form.name(class="form-control", id="floatingName", placeholder="Name") }}
@@ -74,7 +74,7 @@
         {% endfor %}
     </div>
 
-    <p>{{ form.submit(class="btn btn-primary w-100 py-2 fs-5 fw-bold", type="submit") }}</p>
+    <p>{{ form.submit(class="btn btn-primary w-100 py-2 fs-5 fw-bold mt-3", type="submit") }}</p>
 
     <p>Have an account? <a href="{{ url_for('register.login') }}" class="fw-bold" style="text-decoration: none; color: #dd458d;">Log In</a></p>
     <div>{{ message }}</div>
