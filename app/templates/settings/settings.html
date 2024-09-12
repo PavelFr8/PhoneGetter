@@ -1,12 +1,38 @@
 {% extends "base.html" %}
-{% block content %}
-<h1>Settings :)</h1>
-{% if current_user.is_authenticated %}
-    <h3>Name: {{ current_user.name }}</h3>
-    <h3>Surname: {{ current_user.surname }}</h3>
-    <h3>Date of birth: {{ current_user.date_of_birth }}</h3>
-    <h3>Email: {{ current_user.email }}</h3>
-    <a href="{{ url_for('register.logout') }}">Log out</a>
 
-{% endif %}
+{% block content %}
+<div class="container">
+    <div class="profile-header">
+        <h1 class="text-center mt-5 mb-4">Profile Settings</h1>
+    </div>
+    <!-- Используем d-flex и flex-column для мобильных устройств -->
+    <div class="d-flex flex-column flex-lg-row justify-content-between">
+        <div class="profile-info p-4 border rounded shadow-sm bg-light mb-4 mb-lg-0" style="flex: 1; margin: 1rem;">
+            <div class="mb-4">
+                <h2>Name:</h2>
+                <p class="fs-4">{{ current_user.name }}</p>
+            </div>
+            <div class="mb-4">
+                <h2>Surname:</h2>
+                <p class="fs-4">{{ current_user.surname }}</p>
+            </div>
+            <div class="mb-4">
+                <h2>Date of Birth:</h2>
+                <p class="fs-4">{{ current_user.date_of_birth }}</p>
+            </div>
+            <div class="mb-4">
+                <h2>Email:</h2>
+                <p class="fs-4">{{ current_user.email }}</p>
+            </div>
+            <div class="text-center">
+                <a href="#" class="btn btn-danger" style="background-color:#dd458d; color: white;">Edit Profile</a>
+                <a href="{{ url_for('register.logout') }}" style="background-color:white; color: black;" class="btn btn-secondary">Log out</a>
+            </div>
+        </div>
+
+        <div class="profile-info p-4 border rounded shadow-sm bg-light" style="flex: 1; margin: 1rem;">
+            <h2 class="text-center">Your classes</h2>
+        </div>
+    </div>
+</div>
 {% endblock %}
