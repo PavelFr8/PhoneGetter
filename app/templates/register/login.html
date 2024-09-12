@@ -12,11 +12,11 @@
   <form action="" method="post">
     {{ form.hidden_tag() }}
     <a href="/"><img src="{{ url_for('static', filename='img/base/logo.png') }}" width="200px" alt="Logo"></a>
-    <h1 class="h3 mb-3 mt-3 fw-normal">Log In</h1>
+    <h1 class="mb-4 mt-4 text1">Log In</h1>
 
     <div class="form-floating">
         {{ form.email(class="form-control", id="floatingEmail", placeholder="name@example.com", autocomplete="email") }}
-        <label for="floatingEmail">Email address</label>
+        <label for="floatingEmail">Email</label>
         {% for error in form.email.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
