@@ -25,7 +25,7 @@
                 <p class="fs-4">{{ current_user.email }}</p>
             </div>
             <div class="text-center">
-                <a href="{{ url_for('settings.change_password', id=current_user.id) }}" class="btn btn-danger" style="background-color:#dd458d; color: white;">Edit Profile</a>
+                <a href="{{ url_for('settings.change_password', id=current_user.id) }}" class="btn btn-danger" style="background-color:#dd458d; color: white;">Change password</a>
                 <a href="{{ url_for('register.logout') }}" style="background-color:white; color: black;" class="btn btn-secondary">Log out</a>
             </div>
         </div>
