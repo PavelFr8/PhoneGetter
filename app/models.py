@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     created_date = sa.Column(sa.DateTime, default=datetime.utcnow())
 
     device = orm.Relationship("Device", back_populates="owner")
-    phone = orm.Relationship("User", back_populates="user", uselist=False)
+    phone = orm.Relationship("PhoneHistory", back_populates="user", uselist=False)
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
