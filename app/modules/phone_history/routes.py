@@ -7,5 +7,5 @@ from . import module
 # Create "Your phone" page
 @module.route('/')
 @login_required
-def phone():
+def history():
     return render_template('phone/phone.html')

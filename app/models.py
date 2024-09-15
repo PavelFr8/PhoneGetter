@@ -55,11 +55,11 @@ class User(db.Model, UserMixin):
 class Device(db.Model):
     __tablename__ = "devices"
 
-    json_default = json.dumps({str(i): (None, None) for i in range(1, 31)})
+    json_default = json.dumps({str(cell): ["user_id", "state"] for cell in range(1, 31)})
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.String, nullable=False)
-    ip = sa.Column(sa.String, nullable=False)
+    ip = sa.Column(sa.String, nullable=False, unique=True)
     cells = sa.Column(sa.JSON, nullable=False, default=json_default)
     owner_id = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
 
@@ -80,10 +80,8 @@ class Device(db.Model):
 class PhoneHistory(db.Model):
     __tablename__ = "phonehistory"
 
-    json_default = json.dumps({str(i): None for i in range(1, 31)})
-
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
-    history = sa.Column(sa.JSON, nullable=False, default=json_default)
+    history = sa.Column(sa.JSON, nullable=False, default=None)
     user_id = sa.Column(sa.Integer, sa.ForeignKey("users.id"), nullable=False)
 
     # Relationship: One-to-one with User
