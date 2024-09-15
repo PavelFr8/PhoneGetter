@@ -14,7 +14,7 @@ def api_token_required(func):
         if not token:
             return jsonify({"error": "Unauthorized"}), 403
 
-        device = db.session.query(Device).filter_by(api_token=token).first()
+        device: Device = db.session.query(Device).filter_by(api_token=token).first()
         if not device:
             return jsonify({"error": "Unauthorized device"}), 403
 

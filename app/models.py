@@ -55,7 +55,7 @@ class User(db.Model, UserMixin):
 class Device(db.Model):
     __tablename__ = "devices"
 
-    json_default = json.dumps({str(i): (None, None) for i in range(1, 31)})
+    json_default = json.dumps({str(cell): ("user_id", "state") for cell in range(1, 31)})
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.String, nullable=False)
