@@ -6,7 +6,7 @@
 </head>
 
 <div class="container mt-5">
-    <h1 class="page-title">Your Classes</h1>
+    <h1 class="page-title">Your Classes<a class="btn new-btn">New</a></h1>
     <div class="row">
         {% for class in study_classes %}
         <div class="col-md-6">
@@ -24,6 +24,9 @@
             </div>
         </div>
         {% endfor %}
+        {% if not study_classes %}
+        <h1 class="nothing">You haven't got any classes!</h1>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

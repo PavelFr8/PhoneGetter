@@ -11,51 +11,77 @@
     font-size: 2rem;
     margin-bottom: 3rem;
     letter-spacing: 1px;
+    color: #5c5555;
 }
 
 .class-icon {
     font-size: 4.5rem;
-    color: #b1289c;
     margin: 0 20px 0 0;
+    color: #5c5555;
 }
 
 .class-card {
     background-color: transparent;
     border-radius: 15px;
-    border: 3px solid hsl(321, 49%, 37%);
-    box-shadow: 9px 12px 0px 0px #b1289c;
+    border: 3px solid #c26381;
+    box-shadow: 9px 12px 0px 0px #c26381;
     padding: 40px;
     transition: box-shadow 0.2s ease-in-out;
 }
 
 .class-card:hover {
-    box-shadow: 12px 15px 0px 0px #b1289c;
+    box-shadow: 12px 15px 0px 0px #c26381;
 }
 
 .class-name {
-    color: #333;
     font-size: 1.8rem;
+    color: #5c5555;
     margin-bottom: 10px;
 }
 
 .class-phones {
-    color: #666;
     margin-bottom: 20px;
+    color: #5c5555;
 }
 
 .enter-class-btn {
-    background-color: #b1289c;
+    background-color: #c26381;
     color: white;
     padding: 12px 35px;
     border-radius: 30px;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     transition: background-color 0.2s ease-in-out;
 }
 
+.new-btn {
+    background-color: #c26381;
+    color: white;
+    margin-left: 10px;
+    font-size: 1.3rem;
+    padding: 4px 6px;
+}
+
+.new-btn:hover {
+    background-color: #ac5c76 !important;
+    color: white;
+}
+
+.new-btn:active {
+    background-color: #ac5c76 !important;
+    color: white;
+}
+
+.nothing {
+    margin: auto;
+    color: #5c5555;
+    width: auto;
+    height: auto;
+}
+
 .enter-class-btn:hover {
-    background-color: #d6387d;
+    background-color: #ac5c76;
 }
 
 @media (max-width: 768px) {

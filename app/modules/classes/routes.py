@@ -1,5 +1,3 @@
-import json
-
 from flask import render_template
 from flask_login import login_required, current_user
 
@@ -14,3 +12,16 @@ from app.models import Device
 def classes():
     study_classes = current_user.get_classes()
     return render_template('classes/classes.html', title='Your phone', study_classes=study_classes)
+
+# Create "Your classes" page
+@module.route('/new')
+@login_required
+def add_new_class():
+    return render_template('classes/classes.html', title='Your phone')
+
+
+@module.route('/class/<int:id>')
+@login_required
+def study_class(id):
+    phone_class = db.session.query(Device).filter(Device.id == id).first()
+    return render_template('classes/classes.html', title='', study_class=phone_class)
