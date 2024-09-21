@@ -1,0 +1,125 @@
+.timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #ac5c76;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    z-index: -100;
+    margin-top: 60px;
+    height: 100%;
+}
+
+.timeline-item {
+    padding: 20px 40px;
+    position: relative;
+    width: 50%;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-item:nth-child(odd) {
+    right: 7%;
+}
+
+.timeline-item:nth-child(even) {
+    left: 57%;
+}
+
+.timeline-content {
+    padding: 15px 25px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    flex-grow: 1;
+}
+
+.timeline-content:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.time-record {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.date {
+    color: #ac5c76;
+}
+
+.time {
+    color: #6c757d;
+}
+
+.date-header {
+    margin: 40px auto 20px;
+    text-align: center;
+    display: block;
+    width: fit-content;
+    color: #fff;
+    font-weight: bold;
+    background-color: #ac5c76;
+    padding: 10px 20px;
+    z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.date-header h3 {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        width: 100%;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        left: 0 !important;
+        right: 0 !important;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .timeline-icon {
+        margin-bottom: 10px;
+    }
+
+    .time-record {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .timeline-content {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .timeline-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .date-header {
+        margin: 30px auto 10px;
+        padding: 8px 15px;
+        font-size: 1.1em;
+    }
+
+    .timeline:before {
+        left: 5%;
+    }
+}

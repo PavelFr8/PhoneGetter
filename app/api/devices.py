@@ -54,6 +54,8 @@ def register_owner(device):
         - device (str): The name of the device.
         - HTTP status code 200.
     """
+    if device.owner_id:
+        return jsonify({"status": "error", "message": "Device already has owner"}), 404
     owner_id = request.json['owner_id']
     device.owner_id = owner_id
 
@@ -78,6 +80,9 @@ def remove_owner(device):
         - device (str): The name of the device.
         - HTTP status code 200.
     """
+    id = request.json['owner_id']
+    if device.owner_id == id:
+        return jsonify({"status": "error", "message": "You are not the owner of this device"}), 404
     device.owner_id = None
     db.session.commit()
 
@@ -109,7 +114,7 @@ def update_data(device):
     if changed_cell not in cells:
         return jsonify({"status": "error", "message": "Invalid data for 'changed_cell'"}), 400
 
-    device.cells = cells
+    device.cells = json.dumps(cells)
 
     # Extract user ID from the changed cell data and find the user
     user_id = cells[changed_cell][0]
