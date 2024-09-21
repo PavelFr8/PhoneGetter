@@ -109,7 +109,7 @@ def update_data(device):
     if changed_cell not in cells:
         return jsonify({"status": "error", "message": "Invalid data for 'changed_cell'"}), 400
 
-    device.cells = cells
+    device.cells = json.dumps(cells)
 
     # Extract user ID from the changed cell data and find the user
     user_id = cells[changed_cell][0]

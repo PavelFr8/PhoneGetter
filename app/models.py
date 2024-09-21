@@ -44,18 +44,22 @@ class User(db.Model, UserMixin):
     def get_classes(self):
         classes = db.session.query(Device).filter(Device.owner_id == self.id).all()
         if classes:
-            for elem in classes:
-                elem.cells = json.loads(elem.cells)
+            for device in classes:
+                device.cells = json.loads(device.cells)
+                device.phones = 0
+                for val in device.cells.values():
+                    if val[0] == 1:
+                        device.phones += 1
             return classes
         else:
-            return False
+            return None
 
 
 # Device class representing devices owned by users
 class Device(db.Model):
     __tablename__ = "devices"
 
-    json_default = json.dumps({str(cell): ["user_id", "state"] for cell in range(1, 31)})
+    json_default = json.dumps({f'{cell}': ["user_id", "state"] for cell in range(1, 31)})
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.String, nullable=False)

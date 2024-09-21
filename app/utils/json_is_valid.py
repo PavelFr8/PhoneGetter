@@ -13,10 +13,10 @@ def json_is_valid(required_fields):
 
             for field, field_type in required_fields.items():
                 if field not in data or data[field] is None:
-                    return jsonify({"status": "error", f"message": "Missing or null field: {field}"}), 400
+                    return jsonify({"status": "error", "message": f"Missing or null field: {field}"}), 400
                 if not isinstance(data[field], field_type):
                     return jsonify({"status": "error",
-                                    f"message": "Invalid type for field: {field}. Expected {field_type.__name__}."}), 400
+                                    "message": f"Invalid type for field: {field}. Expected {field_type.__name__}."}), 400
 
             return f(*args, **kwargs)
 

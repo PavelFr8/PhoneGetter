@@ -1,0 +1,95 @@
+.container {
+    background-color: #fff;
+    padding: 0px 40px 40px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+}
+
+.class-icon {
+    font-size: 4.5rem;
+    color: #b1289c;
+    margin: 0 20px 0 0;
+}
+
+.class-card {
+    background-color: transparent;
+    border-radius: 15px;
+    border: 3px solid hsl(321, 49%, 37%);
+    box-shadow: 9px 12px 0px 0px #b1289c;
+    padding: 40px;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.class-card:hover {
+    box-shadow: 12px 15px 0px 0px #b1289c;
+}
+
+.class-name {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.class-phones {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.enter-class-btn {
+    background-color: #b1289c;
+    color: white;
+    padding: 12px 35px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.enter-class-btn:hover {
+    background-color: #d6387d;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .class-icon {
+        font-size: 4rem;
+        margin: 0 0 15px 0;
+    }
+
+    .class-name {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .class-phones {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .class-card {
+        padding: 20px;
+    }
+
+    .enter-class-btn {
+        padding: 8px 20px;
+        font-size: 1rem;
+    }
+}
