@@ -1,4 +1,28 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Your Phone :)</h1>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/phone.css') }}">
+</head>
+<div class="container my-5">
+    <h1 class="text-center">Phone History</h1>
+    <div class="timeline">
+        {% for date, events in history.items() %}
+        <div class="date-header">
+            <h3>{{ date }}</h3>
+        </div>
+        {% for event in events %}
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="time-record">
+                    <span class="date">{{ event[1].split(' ')[0] }}</span> <!-- Дата -->
+                    <span class="time">{{ event[1].split(' ')[1] }}</span> <!-- Время -->
+                </div>
+                <h5 style="color:#5c5555">{{ 'Return phone!' if event[0] else 'Put phone in device!' }}</h5>
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
