@@ -1,4 +1,7 @@
-from flask import request, render_template, flash, redirect, url_for
+from datetime import datetime
+import json
+
+from flask import request, render_template, redirect, url_for
 from flask_login import current_user, login_required
 
 from app.models import User
@@ -11,7 +14,19 @@ from .forms import UserChangePasswordForm
 @module.route('/')
 @login_required
 def settings():
-    return render_template('settings/settings.html', title='Settings')
+    try:
+        history = json.loads(current_user.phone.history)
+        filtered = {date: events for date, events in history.items() if events is not None}
+        filtered = dict(sorted(
+            filtered.items(),
+            key=lambda item: datetime.strptime(item[0], '%Y.%m.%d') ==  datetime.strptime(datetime.strftime(datetime.now(), "%Y.%m.%d"), '%Y.%m.%d') if '.' in item[0] else float('inf'),
+            reverse=True
+        ))
+        if not history:
+            filtered = None
+    except Exception:
+        filtered = None
+    return render_template('settings/settings.html', title='Settings', history=filtered)
 
 # Update user password
 @module.route('/change_password/<int:id>', methods=['GET', 'POST'])

@@ -10,7 +10,10 @@ from app.models import Device
 @module.route('/')
 @login_required
 def classes():
-    study_classes = current_user.get_classes()
+    try:
+        study_classes = current_user.get_classes()
+    except Exception:
+        study_classes = None
     return render_template('classes/classes.html', title='Your phone', study_classes=study_classes)
 
 # Create "Your classes" page

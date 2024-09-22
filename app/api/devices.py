@@ -1,5 +1,7 @@
 import json
+
 from flask import request, jsonify
+
 from app import db
 from app.models import Device, User, PhoneHistory
 from app.utils.api_token_required import api_token_required
@@ -56,6 +58,7 @@ def register_owner(device):
     """
     if device.owner_id:
         return jsonify({"status": "error", "message": "Device already has owner"}), 404
+
     owner_id = request.json['owner_id']
     device.owner_id = owner_id
 
@@ -81,9 +84,9 @@ def remove_owner(device):
         - HTTP status code 200.
     """
     id = request.json['owner_id']
-    if device.owner_id == id:
+    if device.owner_id != id:
         return jsonify({"status": "error", "message": "You are not the owner of this device"}), 404
-    device.owner_id = None
+    device.owner_id = ''
     db.session.commit()
 
     return jsonify({"status": "success", "device": device.name}), 200
@@ -91,7 +94,7 @@ def remove_owner(device):
 
 @module.route('/update_data', methods=['POST'])
 @api_token_required
-@json_is_valid({"cells": dict, "changed_cell": int})
+@json_is_valid({"cells": dict[str: list[int, bool]], "changed_cell": int})
 def update_data(device):
     """
     Updates the device's cell data and tracks changes in the user's phone history.
@@ -123,7 +126,7 @@ def update_data(device):
         return jsonify({"status": "error", "message": "User not found"}), 404
 
     if not user.phone:
-        phone_history = PhoneHistory(user_id=user.id)
+        phone_history = PhoneHistory(user_id=user.id, history=json.dumps({}))
         db.session.add(phone_history)
         db.session.commit()
         user.phone = phone_history

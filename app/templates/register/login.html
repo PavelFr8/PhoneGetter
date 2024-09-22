@@ -11,10 +11,10 @@
 <main class="form-signin w-100 m-auto">
   <form action="" method="post">
     {{ form.hidden_tag() }}
-    <a href="/"><img src="{{ url_for('static', filename='img/base/logo.png') }}" width="200px" alt="Logo"></a>
+    <a href="/"><img src="{{ url_for('static', filename='img/base/logo.png') }}" class="mt-4" width="200px" alt="Logo"></a>
     <h1 class="mb-4 mt-4 text1">Log In</h1>
 
-    <div class="form-floating">
+    <div class="form-floating mb-3">
         {{ form.email(class="form-control", id="floatingEmail", placeholder="name@example.com", autocomplete="email") }}
         <label for="floatingEmail">Email</label>
         {% for error in form.email.errors %}
@@ -24,7 +24,7 @@
         {% endfor %}
     </div>
 
-    <div class="form-floating">
+    <div class="form-floating mb-3">
         {{ form.password(class="form-control", id="floatingPassword", placeholder="Password", autocomplete="current-password") }}
         <label for="floatingPassword">Password</label>
         {% for error in form.password.errors %}
