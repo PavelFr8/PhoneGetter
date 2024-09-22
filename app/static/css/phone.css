@@ -93,7 +93,7 @@
     justify-content: space-around;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .timeline-item {
         width: 100%;
         padding: 15px 20px;
@@ -116,6 +116,8 @@
     .timeline-content {
         padding: 10px 15px;
         font-size: 0.9em;
+        border: 3px solid #ac5c76;
+        margin-left: -8%;
     }
 
     .timeline-icon {

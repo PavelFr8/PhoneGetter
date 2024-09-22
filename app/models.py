@@ -59,12 +59,12 @@ class User(db.Model, UserMixin):
 class Device(db.Model):
     __tablename__ = "devices"
 
-    json_default = json.dumps({f'{cell}': ["user_id", "state"] for cell in range(1, 31)})
+    # json_default = json.dumps({f'{cell}': ["user_id", "state"] for cell in range(1, 31)})
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.String, nullable=False)
     ip = sa.Column(sa.String, nullable=False, unique=True)
-    cells = sa.Column(sa.JSON, nullable=False, default=json_default)
+    cells = sa.Column(sa.JSON, nullable=True)
     owner_id = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
 
     # Relationship: Device belongs to one user
@@ -85,7 +85,7 @@ class PhoneHistory(db.Model):
     __tablename__ = "phonehistory"
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
-    history = sa.Column(sa.JSON, nullable=False, default=None)
+    history = sa.Column(sa.JSON, nullable=True)
     user_id = sa.Column(sa.Integer, sa.ForeignKey("users.id"), nullable=False)
 
     # Relationship: One-to-one with User
