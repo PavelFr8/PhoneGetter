@@ -83,6 +83,16 @@
     margin: 0;
 }
 
+.nothing {
+    margin: auto;
+    color: #5c5555;
+    width: auto;
+    height: auto;
+    margin: 20%;
+    display: flex;
+    justify-content: space-around;
+}
+
 @media (max-width: 768px) {
     .timeline-item {
         width: 100%;
