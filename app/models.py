@@ -48,7 +48,7 @@ class User(db.Model, UserMixin):
                 device.cells = json.loads(device.cells)
                 device.phones = 0
                 for val in device.cells.values():
-                    if val[0] == 1:
+                    if val[1] == True:
                         device.phones += 1
             return classes
         else:

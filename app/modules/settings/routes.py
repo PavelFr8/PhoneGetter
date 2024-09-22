@@ -1,6 +1,7 @@
 from datetime import datetime
+import json
 
-from flask import request, render_template, flash, redirect, url_for
+from flask import request, render_template, redirect, url_for
 from flask_login import current_user, login_required
 
 from app.models import User
@@ -14,7 +15,7 @@ from .forms import UserChangePasswordForm
 @login_required
 def settings():
     try:
-        history = User.phone.history
+        history = json.loads(current_user.phone.history)
         filtered = {date: events for date, events in history.items() if events is not None}
         filtered = dict(sorted(
             filtered.items(),
@@ -25,7 +26,6 @@ def settings():
             filtered = None
     except Exception:
         filtered = None
-    print(filtered)
     return render_template('settings/settings.html', title='Settings', history=filtered)
 
 # Update user password
