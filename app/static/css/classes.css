@@ -85,6 +85,50 @@
     background-color: #ac5c76;
 }
 
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-title {
+    color: #5c5555;
+}
+
+.btn-primary {
+    background-color: #ac5c76;
+    border-color: #ac5c76;
+}
+
+.btn-primary:hover {
+    background-color: #c26381;
+    border-color: #c26381;
+}
+
+.btn-secondary {
+    background-color: #5c5555;
+    border-color: #5c5555;
+}
+
+.btn-secondary:hover {
+    background-color: #6f6666;
+    border-color: #6f6666;
+}
+
+.form-label {
+    color: #5c5555;
+}
+
+.form-text {
+    color: #6f6666;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px;

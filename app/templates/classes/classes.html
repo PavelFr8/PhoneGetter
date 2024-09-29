@@ -6,22 +6,27 @@
 </head>
 
 <div class="container mt-5">
-    <h1 class="page-title">Your Classes<a class="btn new-btn">New</a></h1>
+    <h1 class="page-title">Your Classes
+        <button class="btn new-btn" data-bs-toggle="modal" data-bs-target="#newClassModal">New</button>
+    </h1>
+
     <div class="row">
         {% if study_classes and study_classes != None %}
             {% for class in study_classes %}
             <div class="col-md-6">
                 <div class="class-card mb-4">
-                    <div class="card-body d-flex justify-content-between align-items-center"> <!-- Flex для выравнивания -->
+                    <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <h2 class="class-name">{{ class.name }}</h2>
                             <h5 class="class-phones">Phones: {{ class.phones }} / 30</h5>
                         </div>
                         <div class="class-icon text-center">
-                            <i class="fas fa-chalkboard-teacher"></i> <!-- Иконка справа -->
+                            <i class="fas fa-chalkboard-teacher"></i>
                         </div>
                     </div>
-                    <button class="enter-class-btn" style="font-weight: 500;">Enter Class</button>
+                    <a href="{{ url_for('classes.study_class', id=class.id) }}">
+                        <button class="enter-class-btn" style="font-weight: 500;">Enter Class</button>
+                    </a>
                 </div>
             </div>
             {% endfor %}
@@ -30,4 +35,33 @@
         {% endif %}
     </div>
 </div>
+
+<!-- Modal for entering secret code -->
+<div class="modal fade" id="newClassModal" tabindex="-1" aria-labelledby="newClassModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newClassModalLabel">Add New Class</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="secretCodeForm" method="POST">
+                    {{ form.hidden_tag() }} <!-- CSRF Token -->
+                    <div class="mb-3">
+                        <label for="secretCode" class="form-label">Enter Secret Code</label>
+                        {{ form.secret_code(class="form-control") }}
+                        <small class="form-text text-muted">You can get the secret code on the "Phone Receiver" screen.</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitCodeBtn">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/classes.js') }}"></script>
+
 {% endblock %}

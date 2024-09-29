@@ -24,8 +24,11 @@ def json_is_valid(required_fields):
             data = request.json
             if not data:
                 return jsonify({"status": "error", "message": "No JSON body found"}), 400
-
+            for data_field in data.keys():
+                if data_field not in required_fields.keys():
+                    return jsonify({"status": "error", "message": f"Unknown field: {data_field}"}), 400
             for field, field_type in required_fields.items():
+
                 if field not in data or data[field] is None:
                     return jsonify({"status": "error", "message": f"Missing or null field: {field}"}), 400
 

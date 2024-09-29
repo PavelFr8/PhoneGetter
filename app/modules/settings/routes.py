@@ -16,12 +16,11 @@ from .forms import UserChangePasswordForm
 def settings():
     try:
         history = json.loads(current_user.phone.history)
-        filtered = {date: events for date, events in history.items() if events is not None}
-        filtered = dict(sorted(
-            filtered.items(),
-            key=lambda item: datetime.strptime(item[0], '%Y.%m.%d') ==  datetime.strptime(datetime.strftime(datetime.now(), "%Y.%m.%d"), '%Y.%m.%d') if '.' in item[0] else float('inf'),
-            reverse=True
-        ))
+        history = {date: events for date, events in history.items() if events is not None}
+        filtered = dict()
+        for item in history.items():
+            if datetime.strptime(item[0], '%Y.%m.%d') == datetime.strptime(datetime.strftime(datetime.now(), "%Y.%m.%d"), '%Y.%m.%d'):
+                filtered[item[0]] = item[1]
         if not history:
             filtered = None
     except Exception:

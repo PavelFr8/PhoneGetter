@@ -1,0 +1,110 @@
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-weight: 700;
+    font-size: 2rem;
+    color: #5c5555;
+}
+
+h2 {
+    color: #5c5555;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.table {
+    background-color: transparent;
+}
+
+.table th, .table td {
+    color: #5c5555;
+    vertical-align: middle;
+}
+
+.btn-primary {
+    background-color: #ac5c76;
+    border-color: #ac5c76;
+}
+
+.btn-primary:hover {
+    background-color: #c26381;
+    border-color: #c26381;
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 0.875rem;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-title {
+    color: #5c5555;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+        word-wrap: break-word;
+    }
+
+    .table td:nth-child(2) {
+        max-width: 120px;
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .modal-title {
+        font-size: 1.25rem;
+    }
+
+    .btn-sm {
+        padding: 3px 8px;
+        font-size: 0.75rem;
+    }
+}

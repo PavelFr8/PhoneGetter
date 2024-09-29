@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Вы были успешно добавлены в класс {{ name }}</h1>
+    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>Назад</b></a></h2>
+{% endblock %}

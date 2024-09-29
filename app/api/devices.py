@@ -1,9 +1,10 @@
 import json
+import secrets
 
 from flask import request, jsonify
 
 from app import db
-from app.models import Device, User, PhoneHistory
+from app.models import Device, User, PhoneHistory, NewClassTokens
 from app.utils.api_token_required import api_token_required
 from app.utils.json_is_valid import json_is_valid
 from . import module
@@ -37,33 +38,6 @@ def create_device():
     db.session.commit()
 
     return jsonify({"status": "success", "token": token}), 201
-
-
-@module.route('/register_owner', methods=['POST'])
-@api_token_required
-@json_is_valid({"owner_id": int})
-def register_owner(device):
-    """
-    Registers a new owner for the device. Requires valid API token.
-
-    Request JSON body:
-        - owner_id (int): The user ID to assign as the owner of the device.
-
-    :param device: The device associated with the provided API token.
-
-    :return: JSON response:
-        - status (str): 'success' if the owner is registered successfully.
-        - device (str): The name of the device.
-        - HTTP status code 200.
-    """
-    if device.owner_id:
-        return jsonify({"status": "error", "message": "Device already has owner"}), 404
-
-    owner_id = request.json['owner_id']
-    device.owner_id = owner_id
-
-    db.session.commit()
-    return jsonify({"status": "success", "device": device.name}), 200
 
 
 @module.route('/remove_owner', methods=['POST'])
@@ -136,3 +110,44 @@ def update_data(device):
 
     db.session.commit()
     return jsonify({"status": "success", "device": device.name}), 200
+
+
+@module.route('/give_data', methods=['GET'])
+@api_token_required
+def give_data(device):
+    """
+    Return to device new data from database.
+    Requires valid API token.
+
+    :param device: The device associated with the provided API token.
+
+    :return: JSON response:
+        - status (str): 'success' if no errors.
+        - device (str): The name of the device.
+        - cells (json): The data about cells state.
+        - HTTP status code 200.
+    """
+
+    return jsonify({"status": "success", "device": device.name, "cells": device.cells}), 200
+
+
+@module.route('/create_code', methods=['GET'])
+@api_token_required
+def create_code(device):
+    """
+    Return to device secret token for registration on the website.
+    Requires valid API token.
+
+    :param device: The device associated with the provided API token.
+
+    :return: JSON response:
+        - status (str): 'success' if no errors.
+        - device (str): The name of the device.
+        - code (int): The secret code.
+        - HTTP status code 200.
+    """
+    token = int(secrets.token_hex(3), 16)
+    new_link = NewClassTokens(class_id=device.id, token=token)
+    db.session.add(new_link)
+    db.session.commit()
+    return jsonify({"status": "success", "device": device.name, "token": token}), 200

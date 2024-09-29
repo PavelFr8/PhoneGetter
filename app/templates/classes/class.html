@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <link href="{{ url_for('static', filename='css/class.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="page-title">{{ title }}</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inviteModal">
+            Invite Student
+        </button>
+    </div>
+
+    <!-- Modal для приглашения студентов -->
+    <div class="modal fade" id="inviteModal" tabindex="-1" aria-labelledby="inviteModalLabel" aria-hidden="true" data-class-id="{{ class_id }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inviteModalLabel">Invite New Student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<form id="inviteForm" method="POST">
+    {{ form.hidden_tag() }}  <!-- CSRF токен -->
+    <div class="mb-3">
+        <label for="inviteLink" class="form-label">Invite Link</label>
+        <div class="input-group">
+            {{ form.invite_link(class="form-control", id="inviteLink", value="") }}
+            <button type="button" class="btn btn-outline-secondary" onclick="copyInviteLink()">Copy</button>
+        </div>
+    </div>
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Таблица для студентов, которые сдали телефон -->
+        <div class="col-md-6">
+            <h2>Students Who Submitted Phones</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        {% for student in students_with_phones %}
+                        <tr data-student-id="{{ student.id }}">
+                            <td>{{ loop.index }}</td>
+                            <td>{{ student.name }}</td>
+                            <td><i class="fas fa-check-circle text-success"></i> Submitted</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="actionsMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="actionsMenu">
+                                        <li><button class="dropdown-item" onclick="returnPhone({{ student.id }})">Return Phone</button></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><button class="dropdown-item text-danger" onclick="removeStudent({{ student.id }})">Remove</button></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+
+        <!-- Таблица для студентов, которые не сдали телефон -->
+        <div class="col-md-6">
+            <h2>Students Who Haven't Submitted Phones</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        {% for student in students_without_phones %}
+                        <tr data-student-id="{{ student.id }}">
+                            <td>{{ loop.index }}</td>
+                            <td>{{ student.name }}</td>
+                            <td><i class="fas fa-times-circle text-danger"></i> Not Submitted</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="actionsMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="actionsMenu">
+                                        <li><button class="dropdown-item" onclick="returnPhone({{ student.id }})">Return Phone</button></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><button class="dropdown-item text-danger" onclick="removeStudent({{ student.id }})">Remove</button></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/class.js') }}"></script>
+
+{% endblock %}
