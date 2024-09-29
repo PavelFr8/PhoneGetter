@@ -22,6 +22,9 @@ def history():
             reverse=True
         ))
 
+        for val in filtered.values():
+            val.sort(reverse=True)
+
         if not phone_history:
             filtered = None
     except Exception:

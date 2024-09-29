@@ -21,8 +21,6 @@ def settings():
         for item in history.items():
             if datetime.strptime(item[0], '%Y.%m.%d') == datetime.strptime(datetime.strftime(datetime.now(), "%Y.%m.%d"), '%Y.%m.%d'):
                 filtered[item[0]] = item[1]
-
-        print(filtered)
         if not history:
             filtered = None
     except Exception:

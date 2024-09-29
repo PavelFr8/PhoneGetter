@@ -64,7 +64,7 @@ class Device(db.Model):
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.String, nullable=False)
     ip = sa.Column(sa.String, nullable=False, unique=True)
-    cells = sa.Column(sa.JSON, nullable=True)
+    cells = sa.Column(sa.JSON, nullable=True, default=json.dumps({}))
     owner_id = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
 
     # Relationship: Device belongs to one user
@@ -109,3 +109,25 @@ class PhoneHistory(db.Model):
         self.history = {date: actions for date, actions in self.history.items() if date >= thirty_days_ago}
 
         self.history = json.dumps(self.history)
+
+
+# PhoneHistory class keeps secret tokens to make adding students to class safe
+class InviteLink(db.Model):
+    __tablename__ = "invite_link"
+
+    id = db.Column(db.Integer, primary_key=True)
+    class_id = db.Column(db.Integer, nullable=False)
+    token = db.Column(db.String(64), unique=True, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    expires_at = db.Column(db.DateTime, default=datetime.utcnow() + timedelta(days=1))
+
+
+# PhoneHistory class keeps secret tokens to make adding students to class safe
+class NewClassTokens(db.Model):
+    __tablename__ = "new_class_tokens"
+
+    id = db.Column(db.Integer, primary_key=True)
+    class_id = db.Column(db.Integer, nullable=False)
+    token = db.Column(db.String(7), unique=True, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    expires_at = db.Column(db.DateTime, default=datetime.utcnow() + timedelta(minutes=10))
