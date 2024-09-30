@@ -11,12 +11,6 @@
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
   </head>
 <body>
-  {% if current_user.is_authenticated %}
-  <!-- Toggle Button -->
-  <button id="toggle-sidebar-btn" class="btn" style="position: fixed; top: 10px; z-index: 1001;">
-    <img src="{{ url_for('static', filename='img/base/menu_btn.png') }}" alt="My classes" width="32" height="32">
-  </button>
-
   <!-- Compact Language Selection in the top-left corner -->
   <div class="language-btn">
     <button class="btn btn-outline-dark dropdown-toggle btn-sm" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,6 +21,11 @@
       <li><a class="dropdown-item" href="#" data-lang="ru">Русский</a></li>
     </ul>
   </div>
+  {% if current_user.is_authenticated %}
+  <!-- Toggle Button -->
+  <button id="toggle-sidebar-btn" class="btn" style="position: fixed; top: 10px; z-index: 1001;">
+    <img src="{{ url_for('static', filename='img/base/menu_btn.png') }}" alt="My classes" width="32" height="32">
+  </button>
 
   <!-- Sidebar -->
   <div class="sidebar">
