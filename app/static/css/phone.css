@@ -88,11 +88,11 @@
 }
 
 .nothing {
-    margin: auto;
+    text-align: center;
+    margin: 20%;
     color: #5c5555;
     width: auto;
     height: auto;
-    margin: 20%;
     display: flex;
     justify-content: space-around;
 }
@@ -106,6 +106,10 @@
         right: 0 !important;
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .nothing {
+        font-size: 1.5rem !important;
     }
 
     .timeline-icon {

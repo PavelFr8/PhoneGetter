@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Достигнут лимит пользователей</h1>
-    <p>Извините, в одном классе не может находиться больше 30 пользователей.</p>
-    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>Назад</b></a></h2>
+    <h1>{{ _('User limit reached') }}</h1>
+    <p>{{ _('Sorry, a class cannot have more than 30 users.') }}</p>
+    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>{{ _('Back') }}</b></a></h2>
 {% endblock %}

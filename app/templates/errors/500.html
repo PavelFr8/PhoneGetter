@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Произошла непредвиденная ошибка</h1>
-    <p>Администратор был уведомлен. Извините за неудобства!</p>
-    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>Назад</b></a></h2>
+    <h1>{{ _('An Unexpected Error Occurred') }}</h1>
+    <p>{{ _('The administrator has been notified. We apologize for the inconvenience!') }}</p>
+    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>{{ _('Back') }}</b></a></h2>
 {% endblock %}

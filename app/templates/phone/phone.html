@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/phone.css') }}">
 </head>
 <div class="container my-5">
-    <h1 class="text-center">Phone History</h1>
+    <h1 class="text-center">{{ _('Phone History') }}</h1>
     {% if history %}
         <div class="timeline">
             {% for date, events in history.items() %}
@@ -19,14 +19,14 @@
                             <span class="date">{{ event[1].split(' ')[0] }}</span>
                             <span class="time">{{ event[1].split(' ')[1] }}</span>
                         </div>
-                        <h5 style="color:#5c5555">{{ 'Return phone!' if event[0] else 'Put phone in device!' }}</h5>
+                        <h5 style="color:#5c5555">{{ _('Return phone!') if event[0] else _('Put phone in device!') }}</h5>
                     </div>
                 </div>
                 {% endfor %}
             {% endfor %}
         </div>
     {% else %}
-        <h1 class="nothing">You haven't got phone history!</h1>
+        <h1 class="nothing">{{ _('You haven\'t got phone history!') }}</h1>
     {% endif %}
 </div>
 {% endblock %}

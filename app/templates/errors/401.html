@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Вы не авторизованы!</h1>
-    <p>Извините, данная страница доступна только авторизованным пользователям.</p>
-    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>Назад</b></a></h2>
+    <h1>{{ _('You are not authorized!') }}</h1>
+    <p>{{ _('Sorry, this page is only available to authorized users.') }}</p>
+    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>{{ _('Back') }}</b></a></h2>
 {% endblock %}

@@ -40,12 +40,11 @@ def create_device():
     return jsonify({"status": "success", "token": token}), 201
 
 
-@module.route('/remove_owner', methods=['POST'])
+@module.route('/reset_connection', methods=['GET'])
 @api_token_required
-@json_is_valid({"owner_id": int})
-def remove_owner(device):
+def reset_connection(device):
     """
-    Remove owner from device. Requires valid API token.
+    Remove connection between owner and device. Requires valid API token.
 
     Request JSON body:
         - owner_id (int): The owner ID to be removed (though not directly used here).
@@ -57,16 +56,14 @@ def remove_owner(device):
         - device (str): The name of the device.
         - HTTP status code 200.
     """
-    id = request.json['owner_id']
-    if device.owner_id != id:
-        return jsonify({"status": "error", "message": "You are not the owner of this device"}), 404
     device.owner_id = ''
+    device.cells = json.dumps({})
     db.session.commit()
 
     return jsonify({"status": "success", "device": device.name}), 200
 
 
-@module.route('/update_data', methods=['POST'])
+@module.route('/update_data', methods=['PUT'])
 @api_token_required
 @json_is_valid({"cells": dict[str: list[int, bool]], "changed_cell": int})
 def update_data(device):
@@ -94,7 +91,7 @@ def update_data(device):
     device.cells = json.dumps(cells)
 
     # Extract user ID from the changed cell data and find the user
-    user_id = cells[changed_cell][0]
+    user_id = cells[changed_cell][1][0]
     user: User = db.session.query(User).get(user_id)
     if not user:
         return jsonify({"status": "error", "message": "User not found"}), 404

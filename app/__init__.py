@@ -4,6 +4,7 @@ from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_babel import Babel
 from flask_wtf import CSRFProtect
 
 from dotenv import load_dotenv
@@ -14,6 +15,7 @@ import logging
 db = SQLAlchemy()  # create database
 login_manager = LoginManager()  # create manager for login
 csrf = CSRFProtect()  # create csrf protection
+babel = Babel()  # create babel manager
 
 # create logger
 logging.basicConfig(level=logging.DEBUG)

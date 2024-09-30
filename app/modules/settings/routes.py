@@ -3,6 +3,7 @@ import json
 
 from flask import request, render_template, redirect, url_for
 from flask_login import current_user, login_required
+from flask_babel import lazy_gettext as _l
 
 from app.models import User
 from app import db, logger
@@ -25,7 +26,7 @@ def settings():
             filtered = None
     except Exception:
         filtered = None
-    return render_template('settings/settings.html', title='Settings', history=filtered)
+    return render_template('settings/settings.html', title=_l('Settings'), history=filtered)
 
 # Update user password
 @module.route('/change_password/<int:id>', methods=['GET', 'POST'])
@@ -41,15 +42,14 @@ def change_password(id: int):
             if user.check_password(form.curr_password.data):
                 user.set_password(form.new_password.data)
                 db.session.commit()
-                # flash('Пароль успешно изменен!', 'success')
                 return redirect(url_for('settings.settings'))
             else:
                 form.email.data = user.email
-                return render_template('settings/change_password.html', title='Ваш профиль', form=form, message='Passwords are different.')
+                return render_template('settings/change_password.html', title=_l('Your Profile'), form=form, message=_l('Incorrect current password.'))
 
     except Exception as e:
         logger.error(f"Error changing password for user {id}: {e}")
         db.session.rollback()
-        return render_template('settings/change_password.html', title='Ваш профиль', form=form, message='Error, please retry.')
+        return render_template('settings/change_password.html', title=_l('Your Profile'), form=form, message=_l('Error, please retry.'))
 
-    return render_template('settings/change_password.html', title='Ваш профиль', form=form)
+    return render_template('settings/change_password.html', title=_l('Your Profile'), form=form)

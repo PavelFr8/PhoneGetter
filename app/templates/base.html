@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html data-bs-theme="auto">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,17 @@
     <img src="{{ url_for('static', filename='img/base/menu_btn.png') }}" alt="My classes" width="32" height="32">
   </button>
 
+  <!-- Compact Language Selection in the top-left corner -->
+  <div class="language-btn">
+    <button class="btn btn-outline-dark dropdown-toggle btn-sm" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ _('Lang') }}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+      <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+      <li><a class="dropdown-item" href="#" data-lang="ru">Русский</a></li>
+    </ul>
+  </div>
+
   <!-- Sidebar -->
   <div class="sidebar">
     <ul class="nav flex-column">
@@ -26,23 +37,24 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('classes.classes') }}" title="My classes" data-bs-toggle="tooltip" data-bs-placement="right">
-          <img src="{{ url_for('static', filename='img/base/classes.png') }}" alt="My classes">
+        <a class="nav-link" href="{{ url_for('classes.classes') }}" title="{{ _('My classes') }}" data-bs-toggle="tooltip" data-bs-placement="right">
+          <img src="{{ url_for('static', filename='img/base/classes.png') }}" alt="{{ _('My classes') }}">
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('phone_history.history') }}" title="My phone" data-bs-toggle="tooltip" data-bs-placement="right">
-          <img src="{{ url_for('static', filename='img/base/phone.svg') }}" alt="My phone">
+        <a class="nav-link" href="{{ url_for('phone_history.history') }}" title="{{ _('My phone') }}" data-bs-toggle="tooltip" data-bs-placement="right">
+          <img src="{{ url_for('static', filename='img/base/phone.svg') }}" alt="{{ _('My phone') }}">
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('settings.settings') }}" title="Settings" data-bs-toggle="tooltip" data-bs-placement="right">
-          <img src="{{ url_for('static', filename='img/base/settings.png') }}" alt="Settings">
+        <a class="nav-link" href="{{ url_for('settings.settings') }}" title="{{ _('Settings') }}" data-bs-toggle="tooltip" data-bs-placement="right">
+          <img src="{{ url_for('static', filename='img/base/settings.png') }}" alt="{{ _('Settings') }}">
         </a>
       </li>
     </ul>
   </div>
   {% endif %}
+
   <!-- Main content -->
   <div role="main" class="container" style="margin-top: 7vh;">
     {% block content %}{% endblock %}
