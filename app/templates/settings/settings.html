@@ -6,8 +6,9 @@
 </head>
 <div class="container">
     <div class="profile-header">
-        <h1 class="text-center mt-5 mb-4">Profile Settings</h1>
+        <h1 class="text-center mt-5 mb-4">{{ _('Profile Settings') }}</h1>
     </div>
+
     <div class="d-flex flex-column flex-lg-row justify-content-between">
         <div class="profile-info p-4 border rounded shadow-sm bg-light mb-4 mb-lg-0" style="flex: 1; margin: 1rem; height: 125%;">
             <div class="mb-4">
@@ -15,25 +16,25 @@
                 <p class="fs-4">{{ current_user.name }}</p>
             </div>
             <div class="mb-4">
-                <h2>Surname:</h2>
+                <h2>{{ _('Surname:') }}</h2>
                 <p class="fs-4">{{ current_user.surname }}</p>
             </div>
             <div class="mb-4">
-                <h2>Date of Birth:</h2>
+                <h2>{{ _('Date of Birth:') }}</h2>
                 <p class="fs-4">{{ current_user.date_of_birth }}</p>
             </div>
             <div class="mb-4">
-                <h2>Email:</h2>
+                <h2>{{ _('Email:') }}</h2>
                 <p class="fs-4">{{ current_user.email }}</p>
             </div>
             <div class="text-center">
-                <a href="{{ url_for('settings.change_password', id=current_user.id) }}" class="btn btn-danger" style="background-color:#c26381; color: white;">Change password</a>
-                <a href="{{ url_for('register.logout') }}" style="background-color:white; color: black;" class="btn btn-secondary">Log out</a>
+                <a href="{{ url_for('settings.change_password', id=current_user.id) }}" class="btn btn-danger" style="background-color:#c26381; color: white;">{{ _('Change password') }}</a>
+                <a href="{{ url_for('register.logout') }}" style="background-color:white; color: black;" class="btn btn-secondary">{{ _('Log out') }}</a>
             </div>
         </div>
 
         <div class="profile-info p-4 border rounded shadow-sm bg-light" style="flex: 1; margin: 1rem; z-index: -1000;">
-            <h2 class="text-center">Today's phone history</h2>
+            <h2 class="text-center">{{ _('Today\'s phone history') }}</h2>
             {% if history %}
                 <div class="timeline timeline-today">
                     {% for events in history.values() %}
@@ -44,14 +45,14 @@
                                     <span class="date">{{ event[1].split(' ')[0] }}</span>
                                     <span class="time">{{ event[1].split(' ')[1] }}</span>
                                 </div>
-                                <h5 style="color:#5c5555">{{ 'Return phone!' if event[0] else 'Put phone in device!' }}</h5>
+                                <h5 style="color:#5c5555">{{ _('Return phone!') if event[0] else _('Put phone in device!') }}</h5>
                             </div>
                         </div>
                         {% endfor %}
                     {% endfor %}
                 </div>
             {% else %}
-                <h1 class="nothing">You haven't got phone history!</h1>
+                <h1 class="nothing" style="font-size: 1.8rem; text-align: center;">{{ _('You haven\'t got phone history!') }}</h1>
             {% endif %}
         </div>
     </div>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ g.locale }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,11 +12,11 @@
   <form action="" method="post">
     {{ form.hidden_tag() }}
     <a href="/"><img src="{{ url_for('static', filename='img/base/logo.png') }}" class="mt-4" width="200px" alt="Logo"></a>
-    <h1 class="mb-4 mt-4 text1">Log In</h1>
+    <h1 class="mb-4 mt-4 text1">{{ _('Log In') }}</h1>
 
     <div class="form-floating mb-3">
-        {{ form.email(class="form-control", id="floatingEmail", placeholder="name@example.com", autocomplete="email") }}
-        <label for="floatingEmail">Email</label>
+        {{ form.email(class="form-control", id="floatingEmail", placeholder=_('name@example.com'), autocomplete="email") }}
+        <label for="floatingEmail">{{ _('Email') }}</label>
         {% for error in form.email.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -25,8 +25,8 @@
     </div>
 
     <div class="form-floating mb-3">
-        {{ form.password(class="form-control", id="floatingPassword", placeholder="Password", autocomplete="current-password") }}
-        <label for="floatingPassword">Password</label>
+        {{ form.password(class="form-control", id="floatingPassword", placeholder=_('Password'), autocomplete="current-password") }}
+        <label for="floatingPassword">{{ _('Password') }}</label>
         {% for error in form.password.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -36,9 +36,9 @@
 
     <p style="margin: 10px;">{{ form.remember_me() }} {{ form.remember_me.label }}</p>
 
-    <button class="btn btn-primary w-100 py-2 fs-5 fw-bold" type="submit">Sign In</button>
+    <button class="btn btn-primary w-100 py-2 fs-5 fw-bold" type="submit">{{ _('Sign In') }}</button>
 
-    <p class="mt-3">Don't have an account? <a href="{{ url_for('register.register') }}" class="fw-bold" style="text-decoration: none; color: #dd458d;">Sign Up</a></p>
+    <p class="mt-3">{{ _('Don\'t have an account?') }} <a href="{{ url_for('register.register') }}" class="fw-bold" style="text-decoration: none; color: #dd458d;">{{ _('Sign Up') }}</a></p>
 
     <div>{{ message }}</div>
   </form>

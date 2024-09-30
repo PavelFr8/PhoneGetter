@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ g.locale }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,14 +9,14 @@
 </head>
 <body class="d-flex align-items-center py-4 bg-light">
 <main class="form-signin w-100 m-auto">
-  <form action="" method="post" lang="en">
+  <form action="" method="post" lang="{{ g.locale }}">
     {{ form.hidden_tag() }}
     <a href="/" class="logo-container"><img src="{{ url_for('static', filename='img/base/logo.png') }}" class="mt-4" width="180px"></a>
-    <h1 class="mb-4 mt-4 text1">Sign Up</h1>
+    <h1 class="mb-4 mt-4 text1">{{ _('Sign Up') }}</h1>
 
     <div class="form-floating mb-3">
-        {{ form.name(class="form-control", id="floatingName", placeholder="Name") }}
-        <label for="floatingName">Your name</label>
+        {{ form.name(class="form-control", id="floatingName", placeholder=_('Name')) }}
+        <label for="floatingName">{{ _('Your name') }}</label>
         {% for error in form.name.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -25,8 +25,8 @@
     </div>
 
     <div class="form-floating mb-3">
-        {{ form.surname(class="form-control", id="floatingSurname", placeholder="Surname") }}
-        <label for="floatingSurname">Your surname</label>
+        {{ form.surname(class="form-control", id="floatingSurname", placeholder=_('Surname')) }}
+        <label for="floatingSurname">{{ _('Your surname') }}</label>
         {% for error in form.surname.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -35,8 +35,8 @@
     </div>
 
     <div class="form-floating mb-3">
-        {{ form.date_of_birth(class="form-control", id="floatingDate", placeholder="mm/dd/yyyy", lang="en") }}
-        <label for="floatingDate">Your date of birth</label>
+        {{ form.date_of_birth(class="form-control", id="floatingDate", placeholder=_('mm/dd/yyyy')) }}
+        <label for="floatingDate">{{ _('Your date of birth') }}</label>
         {% for error in form.date_of_birth.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -45,8 +45,8 @@
     </div>
 
     <div class="form-floating mb-3">
-        {{ form.email(class="form-control", id="floatingEmail", placeholder="name@example.com") }}
-        <label for="floatingEmail">Email</label>
+        {{ form.email(class="form-control", id="floatingEmail", placeholder=_('name@example.com')) }}
+        <label for="floatingEmail">{{ _('Email') }}</label>
         {% for error in form.email.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -55,8 +55,8 @@
     </div>
 
     <div class="form-floating mb-3">
-        {{ form.password(class="form-control", id="floatingPassword", placeholder="Password") }}
-        <label for="floatingPassword">Password</label>
+        {{ form.password(class="form-control", id="floatingPassword", placeholder=_('Password')) }}
+        <label for="floatingPassword">{{ _('Password') }}</label>
         {% for error in form.password.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -65,8 +65,8 @@
     </div>
 
     <div class="form-floating mb-3">
-        {{ form.password_again(class="form-control", id="floatingPasswordAgain", placeholder="Password again") }}
-        <label for="floatingPasswordAgain">Repeat password</label>
+        {{ form.password_again(class="form-control", id="floatingPasswordAgain", placeholder=_('Password again')) }}
+        <label for="floatingPasswordAgain">{{ _('Repeat password') }}</label>
         {% for error in form.password_again.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
@@ -76,7 +76,7 @@
 
     <p>{{ form.submit(class="btn btn-primary w-100 py-2 fs-5 fw-bold mt-3", type="submit") }}</p>
 
-    <p>Have an account? <a href="{{ url_for('register.login') }}" class="fw-bold login-link">Log In</a></p>
+    <p>{{ _('Have an account?') }} <a href="{{ url_for('register.login') }}" class="fw-bold login-link">{{ _('Log In') }}</a></p>
     <div>{{ message }}</div>
   </form>
 </main>

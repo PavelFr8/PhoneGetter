@@ -82,7 +82,7 @@ class Device(db.Model):
 
 # PhoneHistory class to track user's phone usage or history
 class PhoneHistory(db.Model):
-    __tablename__ = "phonehistory"
+    __tablename__ = "phone_history"
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     history = sa.Column(sa.JSON, nullable=True)

@@ -3,6 +3,7 @@ import json
 
 from flask import render_template, jsonify
 from flask_login import login_required, current_user
+from flask_babel import lazy_gettext as _l
 
 from app.utils.generate_invite_link import generate_invite_link
 from . import module, forms
@@ -17,10 +18,8 @@ def classes():
     try:
         study_classes = current_user.get_classes()
     except Exception as e:
-        print(e)
         study_classes = None
-    print(study_classes)
-    return render_template('classes/classes.html', title='Your classes', study_classes=study_classes, form=forms.SecretCodeForm())
+    return render_template('classes/classes.html', title=_l('Your classes'), study_classes=study_classes, form=forms.SecretCodeForm())
 
 
 # Create "Class <Name>" page
@@ -39,7 +38,7 @@ def study_class(id):
 
     for cell, info in phone_class.cells.items():
         student = db.session.query(User).filter(User.id == info[0]).first()
-        student_name = student.name + ' ' + student.surname
+        student_name = f"{student.name} {student.surname}"
         student_info = {
             'id': info[0],
             'name': student_name,
@@ -55,8 +54,8 @@ def study_class(id):
     students_without_phones = sorted(students_without_phones, key=lambda x: x['name'])
 
     return render_template('classes/class.html',
-                           title=f'{phone_class.name}',
-                           class_id = phone_class.id,
+                           title=phone_class.name,
+                           class_id=phone_class.id,
                            students_with_phones=students_with_phones,
                            students_without_phones=students_without_phones,
                            form=form)
@@ -70,24 +69,27 @@ def add_by_code():
     if form.validate_on_submit():
         secret_code = form.secret_code.data
         connection: NewClassTokens = NewClassTokens.query.filter_by(token=secret_code).first()
+
         if not connection:
-            return jsonify({'status': 'error', 'message': 'Invalid secret code. Please try again.'}), 400
+            return jsonify({'status': 'error', 'message': _l('Invalid secret code. Please try again.')}), 400
 
         if connection.expires_at > datetime.utcnow():
             device: Device = db.session.query(Device).get(connection.class_id)
             if device.owner_id:
-                return jsonify({"status": "error", "message": "Device already has owner"}), 404
+                return jsonify({"status": "error", "message": _l("Device already has owner")}), 404
 
             device.owner_id = current_user.id
             db.session.commit()
 
-            return jsonify({'status': 'success', 'message': 'Class added successfully!'}), 200
+            return jsonify({'status': 'success', 'message': _l('Class added successfully!')}), 200
         else:
-            db.session.delete(connection)
+            connections: list[NewClassTokens] = NewClassTokens.query.where(NewClassTokens.expires_at <= datetime.utcnow()).all()
+            for conn in connections:
+                db.session.delete(conn)
             db.session.commit()
-            return jsonify({'status': 'error', 'message': 'Too old secret code'}), 404
+            return jsonify({'status': 'error', 'message': _l('Too old secret code')}), 404
     else:
-        return jsonify({'status': 'error', 'message': 'Form validation failed.'}), 400
+        return jsonify({'status': 'error', 'message': _l('Form validation failed.')}), 400
 
 
 # Create unique link to invite user to class
@@ -144,12 +146,12 @@ def remove_user(class_id, user_id):
     device: Device = db.session.query(Device).get(class_id)
 
     if device.owner_id != current_user.id:
-        return jsonify({'status': 'error', 'error': 'Permission denied'}), 403
+        return jsonify({'status': 'error', 'error': _l('Permission denied')}), 403
 
     cells = json.loads(device.cells)
 
     for cell, cell_data in cells.items():
-        if cell_data[0] == user_id:
+        if cell_data[1][0] == user_id:
             del cells[cell]
             break
 

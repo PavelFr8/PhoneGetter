@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Доступ запрещен</h1>
-    <p>Извините, у вас нет прав доступа к этому ресурсу.</p>
-    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>Назад</b></a></h2>
+    <h1>{{ _('Access Denied') }}</h1>
+    <p>{{ _('Sorry, you do not have permission to access this resource.') }}</p>
+    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>{{ _('Back') }}</b></a></h2>
 {% endblock %}

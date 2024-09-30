@@ -45,3 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
     new bootstrap.Tooltip(tooltipTriggerEl)
   })
 })();
+
+
+document.querySelectorAll('.dropdown-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+        let selectedLang = this.getAttribute('data-lang');
+        document.cookie = "language=" + selectedLang + "; path=/";
+        location.reload();
+    });
+});

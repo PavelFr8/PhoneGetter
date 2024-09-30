@@ -7,6 +7,8 @@ load_dotenv()
 class Config(object):
     DEBUG = False
 
+    LANGUAGES = ['ru', 'en']
+
     CSRF_ENABLED = True
     WTF_CSRF_ENABLED = True
     WTF_CSRF_SECRET_KEY = os.environ.get("WTF_CSRF_SECRET_KEY")

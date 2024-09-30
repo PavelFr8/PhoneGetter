@@ -14,11 +14,8 @@
     <!-- About Section -->
     <section class="about-section text-center" style="background-image: url('{{ url_for('static', filename='img/main/back1.jpg') }}');">
         <div class="container content">
-            <h1>About Us</h1>
-            <p>We are a small teem of two students who don't want to get "2" by Project. Our teem works hard and
-                believes that one day we finally will be able to use Raspberry. To be honest, while writing this words
-                i realise that my imagination ended and i have no idea that i can write... Still no idea... Mmm...
-                The most sadness thing is that i don't even know any jokes in english...</p>
+            <h1>{{ _('About Us') }}</h1>
+            <p>{{ _('We are a small teem of two students who don`t want to get "2" by Project. Our teem works hard and believes that one day we finally will be able to use Raspberry. To be honest, while writing this words i realise that my imagination ended and i have no idea that i can write... Still no idea... Mmm... The most sadness thing is that i don`t even know any jokes in english...') }}</p>
         </div>
     </section>
 
@@ -26,29 +23,29 @@
     <div class="section-why-us">
         <div class="content-wrapper">
             <div class="text-content">
-                <h1 class="title-section margin-top">Why us?</h1>
+                <h1 class="title-section margin-top">{{ _('Why us?') }}</h1>
                 <div class="card card-design">
-                    <h3 class="card-title">XD we smart</h3>
+                    <h3 class="card-title">{{ _('XD we smart') }}</h3>
                     <ul class="feature-list">
-                        <li>No experience in Raspberry coding</li>
-                        <li>A lot of stupid mistakes</li>
-                        <li>We get all our ideas from ChatGPT</li>
+                        <li>{{ _('No experience in Raspberry coding') }}</li>
+                        <li>{{ _('A lot of stupid mistakes') }}</li>
+                        <li>{{ _('We get all our ideas from ChatGPT') }}</li>
                     </ul>
                 </div>
                 <div class="card card-development">
-                    <h3 class="card-title">Good in development</h3>
+                    <h3 class="card-title">{{ _('Good in development') }}</h3>
                     <ul class="feature-list">
-                        <li>No experience in teem work</li>
-                        <li>Code = rubbish</li>
-                        <li>1. Do 2. Think</li>
+                        <li>{{ _('No experience in teem work') }}</li>
+                        <li>{{ _('Code = rubbish') }}</li>
+                        <li>{{ _('1. Do 2. Think') }}</li>
                     </ul>
                 </div>
                 <div class="card card-support">
-                    <h3 class="card-title">Make teachers live easier</h3>
+                    <h3 class="card-title">{{ _('Make teachers live easier') }}</h3>
                     <ul class="feature-list">
-                        <li>Hakuna Matata!</li>
-                        <li>It will control all teenagers</li>
-                        <li>We will check the history of browser then your phone will be in device</li>
+                        <li>{{ _('Hakuna Matata!') }}</li>
+                        <li>{{ _('It will control all teenagers') }}</li>
+                        <li>{{ _('We will check the history of browser then your phone will be in device') }}</li>
                     </ul>
                 </div>
             </div>
@@ -67,8 +64,8 @@
                     <img src="{{ url_for('static', filename='img/main/device.jpg') }}" alt="Our Device" class="img-fluid shadow-sm device-img">
                 </div>
                 <div class="col-md-6">
-                    <h2 class="mb-4 device-text">Our Device</h2>
-                    <p>Our device is designed to provide seamless and secure monitoring of all your communications. Built with cutting-edge technology, it ensures that you have complete control and visibility over your phone activities. Whether it's for personal safety or business management, our device offers unmatched reliability and performance.</p>
+                    <h2 class="mb-4 device-text">{{ _('Our Device') }}</h2>
+                    <p>{{ _('Our device is designed to provide seamless and secure monitoring of all your communications. Built with cutting-edge technology, it ensures that you have complete control and visibility over your phone activities. Whether it`s for personal safety or business management, our device offers unmatched reliability and performance.') }}</p>
                 </div>
             </div>
         </div>
@@ -77,15 +74,15 @@
     <!-- Benefits Section -->
     <section class="benefits-section py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5" style="color: black;">Benefits</h2>
+            <h2 class="text-center mb-5" style="color: black;">{{ _('Benefits') }}</h2>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <div class="benefit-card shadow-sm p-4 rounded">
                         <div class="icon-container mb-3">
                             <i class="bi bi-shield-check text-dark"></i> <!-- Черные иконки -->
                         </div>
-                        <h4 class="mb-3">Advanced Security</h4>
-                        <p>Advanced security features to protect your data.</p>
+                        <h4 class="mb-3">{{ _('Advanced Security') }}</h4>
+                        <p>{{ _('Advanced security features to protect your data.') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
@@ -93,8 +90,8 @@
                         <div class="icon-container mb-3">
                             <i class="bi bi-gear-wide-connected text-dark"></i>
                         </div>
-                        <h4 class="mb-3">Easy Interface</h4>
-                        <p>Easy-to-use interface with detailed analytics.</p>
+                        <h4 class="mb-3">{{ _('Easy Interface') }}</h4>
+                        <p>{{ _('Easy-to-use interface with detailed analytics.') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
@@ -102,8 +99,8 @@
                         <div class="icon-container mb-3">
                             <i class="bi bi-headset text-dark"></i>
                         </div>
-                        <h4 class="mb-3">24/7 Support</h4>
-                        <p>24/7 customer support to assist with any queries.</p>
+                        <h4 class="mb-3">{{ _('24/7 Support') }}</h4>
+                        <p>{{ _('24/7 customer support to assist with any queries.') }}</p>
                     </div>
                 </div>
             </div>
@@ -113,7 +110,7 @@
     <!-- Register Button -->
     <div class="text-center my-5">
         <a href="{{ url_for('register.register') }}" class="register-btn shadow-lg">
-            <span class="btn-text">Register Now</span>
+            <span class="btn-text">{{ _('Register Now') }}</span>
             <i class="bi bi-arrow-right-circle-fill ms-2"></i>
         </a>
     </div>

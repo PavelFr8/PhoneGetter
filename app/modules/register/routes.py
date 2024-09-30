@@ -1,5 +1,6 @@
-from flask import render_template, make_response, redirect, url_for, flash
+from flask import render_template, make_response, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
+from flask_babel import lazy_gettext as _l
 
 from app.models import User
 from app import db, logger
@@ -16,11 +17,11 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register/register.html', title='Sign Up', form=form,
-                                   message='Passwords are different!')
+            return render_template('register/register.html', title=_l('Sign Up'), form=form,
+                                   message=_l('Passwords are different!'))
         if User.query.filter_by(email=form.email.data).first():
-            return render_template('register/register.html', title='Sign Up', form=form,
-                                   message='User already exist')
+            return render_template('register/register.html', title=_l('Sign Up'), form=form,
+                                   message=_l('User already exists'))
 
         try:
             user = User(
@@ -36,10 +37,10 @@ def register():
         except Exception as e:
             logger.error(f"Error registering user: {e}")
             db.session.rollback()
-            return render_template('register/register.html', title='Регистрация', form=form,
-                                   message='Произошла ошибка при регистрации.')
+            return render_template('register/register.html', title=_l('Registration'), form=form,
+                                   message=_l('An error occurred during registration.'))
 
-    return render_template('register/register.html', title='Регистрация', form=form)
+    return render_template('register/register.html', title=_l('Registration'), form=form)
 
 
 # Logging
@@ -55,17 +56,16 @@ def login():
             if user and user.check_password(form.password.data):
                 login_user(user, remember=form.remember_me.data)
                 response = make_response(redirect(url_for('settings.settings')))
-                # flash('Вы успешно вошли!', 'success')
                 return response
 
-            return render_template('register/login.html', title='Sign In', message='Mistake in login or password',
+            return render_template('register/login.html', title=_l('Sign In'), message=_l('Mistake in login or password'),
                                    form=form)
         except Exception as e:
             logger.error(f"Error during login: {e}")
-            return render_template('register/login.html', title='Sign Up', form=form,
-                                   message='Error in authorisation.')
+            return render_template('register/login.html', title=_l('Sign Up'), form=form,
+                                   message=_l('Error in authorization.'))
 
-    return render_template('register/login.html', title='Authorisation', form=form)
+    return render_template('register/login.html', title=_l('Authorization'), form=form)
 
 
 # Logout
