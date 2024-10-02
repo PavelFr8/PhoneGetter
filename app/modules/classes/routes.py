@@ -69,6 +69,7 @@ def add_by_code():
     if form.validate_on_submit():
         secret_code = form.secret_code.data
         connection: NewClassTokens = NewClassTokens.query.filter_by(token=secret_code).first()
+        # print(connection)
 
         if not connection:
             return jsonify({'status': 'error', 'message': _l('Invalid secret code. Please try again.')}), 400
@@ -121,7 +122,7 @@ def invite_student(class_id, token):
 
             for cell in cells.values():
                 if cell[0] == user.id:
-                    return render_template('classes/added.html'), 200
+                    return render_template('classes/added.html', name=device.name), 200
             try:
                 cells[str(int(list(cells.keys())[-1]) + 1)] = [user.id, False]
             except:
@@ -130,9 +131,11 @@ def invite_student(class_id, token):
             device.cells = json.dumps(cells)
 
             db.session.commit()
-            return render_template('classes/added.html'), 200
+            return render_template('classes/added.html', name=device.name), 200
         else:
-            db.session.delete(invite_link)
+            expires_links = InviteLink.query.where(InviteLink.invite_link.expires_at <= datetime.utcnow()).all()
+            for elem in expires_links:
+                db.session.delete(elem)
             db.session.commit()
             return render_template('errors/bad_link.html'), 403
     else:
@@ -140,18 +143,18 @@ def invite_student(class_id, token):
 
 
 # Remove user from class
-@module.route('/class/<int:class_id>/invite/<int:user_id>', methods=['DELETE'])
+@module.route('/class/<int:class_id>/remove/<int:user_id>', methods=['DELETE'])
 @login_required
 def remove_user(class_id, user_id):
     device: Device = db.session.query(Device).get(class_id)
 
     if device.owner_id != current_user.id:
-        return jsonify({'status': 'error', 'error': _l('Permission denied')}), 403
+        return jsonify({'status': 'error', 'message': _l('Permission denied')}), 403
 
     cells = json.loads(device.cells)
 
     for cell, cell_data in cells.items():
-        if cell_data[1][0] == user_id:
+        if cell_data[0] == user_id:
             del cells[cell]
             break
 

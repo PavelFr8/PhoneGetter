@@ -91,7 +91,7 @@ def update_data(device):
     device.cells = json.dumps(cells)
 
     # Extract user ID from the changed cell data and find the user
-    user_id = cells[changed_cell][1][0]
+    user_id = cells[changed_cell][0]
     user: User = db.session.query(User).get(user_id)
     if not user:
         return jsonify({"status": "error", "message": "User not found"}), 404

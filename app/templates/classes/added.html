@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>You were successfully added to {{ name }}</h1>
-    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139);"><b>Back</b></a></h2>
+    <h1>{{ _('You were successfully added to') }} {{ name }}</h1>
+    <h2><a href="{{ url_for('main.main') }}" style="text-decoration:none; color: rgb(0, 0, 139); margin-top: 50px;"><b>{{ _('Back') }}</b></a></h2>
 {% endblock %}

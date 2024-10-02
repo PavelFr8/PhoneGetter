@@ -6,7 +6,7 @@ function removeStudent(studentId) {
         return;
     }
 
-    fetch(`/classes/class/${classId}/invite/${studentId}`, {
+    fetch(`/classes/class/${classId}/remove/${studentId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

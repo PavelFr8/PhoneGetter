@@ -12,11 +12,11 @@ def api_token_required(func):
     def decorated_function(*args, **kwargs):
         token = request.headers.get('Authorization')
         if not token:
-            return jsonify({"error": "Unauthorized"}), 403
+            return jsonify({"status": "error", "message": "Unauthorized"}), 403
 
         device: Device = db.session.query(Device).filter_by(api_token=token).first()
         if not device:
-            return jsonify({"error": "Unauthorized device"}), 403
+            return jsonify({"status": "error", "message": "Unauthorized device"}), 403
 
         return func(device=device, *args, **kwargs)
 

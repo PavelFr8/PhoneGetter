@@ -119,7 +119,7 @@ class InviteLink(db.Model):
     class_id = db.Column(db.Integer, nullable=False)
     token = db.Column(db.String(64), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    expires_at = db.Column(db.DateTime, default=datetime.utcnow() + timedelta(days=1))
+    expires_at = db.Column(db.DateTime, default=lambda: datetime.utcnow() + timedelta(days=1))
 
 
 # PhoneHistory class keeps secret tokens to make adding students to class safe
@@ -130,4 +130,4 @@ class NewClassTokens(db.Model):
     class_id = db.Column(db.Integer, nullable=False)
     token = db.Column(db.String(7), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    expires_at = db.Column(db.DateTime, default=datetime.utcnow() + timedelta(minutes=10))
+    expires_at = db.Column(db.DateTime, default=lambda: (datetime.utcnow() + timedelta(minutes=10)))
