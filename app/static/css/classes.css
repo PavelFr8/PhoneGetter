@@ -74,11 +74,13 @@
 }
 
 .nothing {
-    margin: auto;
+    text-align: center;
+    margin: 20%;
     color: #5c5555;
     width: auto;
     height: auto;
-    margin: 20%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .enter-class-btn:hover {
@@ -132,6 +134,10 @@
 @media (max-width: 768px) {
     .container {
         padding: 20px;
+    }
+
+    .nothing {
+        font-size: 1.5rem !important;
     }
 
     .page-title {

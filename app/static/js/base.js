@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 
 
-document.querySelectorAll('.dropdown-item').forEach(function (item) {
+document.querySelectorAll('.qwertr').forEach(function (item) {
     item.addEventListener('click', function () {
         let selectedLang = this.getAttribute('data-lang');
         document.cookie = "language=" + selectedLang + "; path=/";
