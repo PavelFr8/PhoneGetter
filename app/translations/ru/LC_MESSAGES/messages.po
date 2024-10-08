@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 03:08+0300\n"
+"POT-Creation-Date: 2024-10-09 01:40+0300\n"
 "PO-Revision-Date: 2024-10-02 03:08+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -355,11 +355,23 @@ msgstr "Произошла непредвиденная ошибка"
 
 #: app/templates/errors/500.html:5
 msgid "The administrator has been notified. We apologize for the inconvenience!"
-msgstr "Администратор уведомлен. "
+msgstr "Администратор уведомлен. Приносим извинения за ошибки в работе!"
 
 #: app/templates/main/main.html:18
-msgid "We are a small teem of two students who don`t want to get \"2\" by Project. Our teem works hard and believes that one day we finally will be able to use Raspberry. To be honest, while writing this words i realise that my imagination ended and i have no idea that i can write... Still no idea... Mmm... The most sadness thing is that i don`t even know any jokes in english..."
-msgstr "Мы — небольшая команда из двух учеников, которые не хотят получать \"2\" по проекту. Наша команда усердно работает и верит, что однажды мы, наконец, сможем пользоваться Raspberry. Честно говоря, пока я пишу эти слова, я понимаю, что мое воображение закончилось, и я понятия не имею, что я могу писать... До сих пор понятия не имею... Ммм... Самое печальное, что я даже не знаю ни одной шутки на английском..."
+msgid ""
+"We are a small teem of two students who don`t want to get \"2\" by "
+"Project. Our teem works hard and believes that one day we finally will be"
+" able to use Raspberry. To be honest, while writing this words i realise "
+"that my imagination ended and i have no idea that i can write... Still no"
+" idea... Mmm... The most sadness thing is that i don`t even know any "
+"jokes in english..."
+msgstr ""
+"Мы — небольшая команда из двух учеников, которые не хотят получать \"2\" "
+"по проекту. Наша команда усердно работает и верит, что однажды мы, "
+"наконец, сможем пользоваться Raspberry. Честно говоря, пока я пишу эти "
+"слова, я понимаю, что мое воображение закончилось, и я понятия не имею, "
+"что я могу писать... До сих пор понятия не имею... Ммм... Самое "
+"печальное, что я даже не знаю ни одной шутки на английском..."
 
 #: app/templates/main/main.html:26
 msgid "Why us?"
@@ -411,15 +423,28 @@ msgstr "Мы будем контролировать всех подростко
 
 #: app/templates/main/main.html:48
 msgid "We will check the history of browser then your phone will be in device"
-msgstr "Мы проверим историю браузера, после чего ваш телефон окажется на устройстве."
+msgstr ""
+"Мы проверим историю браузера, после чего ваш телефон окажется на "
+"устройстве."
 
 #: app/templates/main/main.html:67
 msgid "Our Device"
 msgstr "Наше устройство"
 
 #: app/templates/main/main.html:68
-msgid "Our device is designed to provide seamless and secure monitoring of all your communications. Built with cutting-edge technology, it ensures that you have complete control and visibility over your phone activities. Whether it`s for personal safety or business management, our device offers unmatched reliability and performance."
-msgstr "Наше устройство разработано для обеспечения бесперебойного и безопасного мониторинга всех ваших коммуникаций. Созданное с использованием передовых технологий, оно гарантирует вам полный контроль и видимость действий на вашем телефоне. Будь то для личной безопасности или управления бизнесом, наше устройство обеспечивает непревзойденную надежность и производительность."
+msgid ""
+"Our device is designed to provide seamless and secure monitoring of all "
+"your communications. Built with cutting-edge technology, it ensures that "
+"you have complete control and visibility over your phone activities. "
+"Whether it`s for personal safety or business management, our device "
+"offers unmatched reliability and performance."
+msgstr ""
+"Наше устройство разработано для обеспечения бесперебойного и безопасного "
+"мониторинга всех ваших коммуникаций. Созданное с использованием передовых"
+" технологий, оно гарантирует вам полный контроль и видимость действий на "
+"вашем телефоне. Будь то для личной безопасности или управления бизнесом, "
+"наше устройство обеспечивает непревзойденную надежность и "
+"производительность."
 
 #: app/templates/main/main.html:77
 msgid "Benefits"
@@ -451,7 +476,7 @@ msgstr "Круглосуточная поддержка клиентов, гот
 
 #: app/templates/main/main.html:113
 msgid "Register Now"
-msgstr "Зарегистрируйтесь сейчас"
+msgstr "Зарегистрироваться"
 
 #: app/templates/phone/phone.html:8
 msgid "Phone History"
@@ -459,7 +484,7 @@ msgstr "История телефона"
 
 #: app/templates/phone/phone.html:22 app/templates/settings/settings.html:48
 msgid "Return phone!"
-msgstr "Верните телефон!"
+msgstr "Вы забрали телефон!"
 
 #: app/templates/phone/phone.html:22 app/templates/settings/settings.html:48
 msgid "Put phone in device!"
@@ -516,6 +541,10 @@ msgstr "Новый пароль"
 #: app/templates/settings/settings.html:9
 msgid "Profile Settings"
 msgstr "Настройки профиля"
+
+#: app/templates/settings/settings.html:15
+msgid "Name:"
+msgstr "Имя:"
 
 #: app/templates/settings/settings.html:19
 msgid "Surname:"
