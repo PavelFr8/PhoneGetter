@@ -75,7 +75,8 @@
 
 .nothing {
     text-align: center;
-    margin: 20%;
+    margin: auto;
+    margin-top: 20%;
     color: #5c5555;
     width: auto;
     height: auto;

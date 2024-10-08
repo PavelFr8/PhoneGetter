@@ -103,6 +103,7 @@ def generate_invite(class_id):
 
 # Add user to class by link
 @module.route('/class/<int:class_id>/invite/<string:token>', methods=['GET'])
+@login_required
 def invite_student(class_id, token):
     invite_link = InviteLink.query.filter_by(class_id=class_id, token=token).first()
     if invite_link:
@@ -139,7 +140,7 @@ def invite_student(class_id, token):
             db.session.commit()
             return render_template('errors/bad_link.html'), 403
     else:
-        return render_template('errors/403.html'), 403
+        return render_template('errors/bad_link.html'), 403
 
 
 # Remove user from class
