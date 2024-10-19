@@ -1,9 +1,10 @@
 import json
 import uuid
 from datetime import datetime, timedelta
-import time
+import pytz
 
 from flask_login import UserMixin
+from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 
 import sqlalchemy as sa
@@ -23,6 +24,7 @@ class User(db.Model, UserMixin):
     email = sa.Column(sa.String, unique=True, nullable=False, index=True)
     hashed_password = sa.Column(sa.String, nullable=False)
     created_date = sa.Column(sa.DateTime, default=datetime.utcnow())
+    utc = sa.Column(sa.String, default='')
 
     # Relationships: One-to-many with Device, one-to-one with PhoneHistory
     device = orm.Relationship("Device", back_populates="owner")
@@ -93,21 +95,43 @@ class PhoneHistory(db.Model):
 
     # Method to update phone history
     def update_history(self, action):
-        self.history = json.loads(self.history)
+        # Load the existing history JSON
+        self.history = json.loads(self.history) if self.history else {}
 
-        # Add new action with timestamp
-        action = (action, str(datetime.now().strftime("%d.%m.%Y") + " " + time.strftime("%H:%M")))
-        today = datetime.now().strftime("%Y.%m.%d")
+        # Get the current time in UTC
+        current_utc_time = datetime.now(pytz.UTC)
 
+        # Get the user's timezone using Flask-Babel
+        tzname = self.user.utc
+        if tzname:
+            tzname = pytz.timezone(tzname)
+        else:
+            tzname = pytz.UTC
+
+        user_timezone = tzname
+
+        # Convert UTC time to user's timezone
+        current_time_user = current_utc_time.astimezone(user_timezone)
+
+        # Format the date and time according to the user's timezone
+        formatted_date = current_time_user.strftime("%d.%m.%Y")
+        formatted_time = current_time_user.strftime("%H:%M")
+
+        # Save the action and the formatted timestamp
+        action = (action, f"{formatted_date} {formatted_time}")
+        today = current_time_user.strftime("%Y.%m.%d")
+
+        # Update the history for today or create a new entry
         if today in self.history:
             self.history[today].append(action)
         else:
             self.history[today] = [action]
 
-        # Keep history for only the last 30 days
-        thirty_days_ago = (datetime.now() - timedelta(days=30)).strftime("%Y.%m.%d")
+        # Keep history for the last 30 days
+        thirty_days_ago = (current_utc_time - timedelta(days=30)).strftime("%Y.%m.%d")
         self.history = {date: actions for date, actions in self.history.items() if date >= thirty_days_ago}
 
+        # Save history as JSON string
         self.history = json.dumps(self.history)
 
 
@@ -128,6 +152,6 @@ class NewClassTokens(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     class_id = db.Column(db.Integer, nullable=False)
-    token = db.Column(db.String(7), unique=True, nullable=False)
+    token = db.Column(db.String(10), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     expires_at = db.Column(db.DateTime, default=lambda: (datetime.utcnow() + timedelta(minutes=10)))
