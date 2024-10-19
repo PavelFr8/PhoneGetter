@@ -65,4 +65,7 @@
   <!-- Custom JS -->
   <script src="{{ url_for('static', filename='js/base.js') }}"></script>
 </body>
+<script>
+    document.cookie = "timezone=" + Intl.DateTimeFormat().resolvedOptions().timeZone;
+</script>
 </html>

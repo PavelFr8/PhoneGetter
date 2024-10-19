@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-09 01:40+0300\n"
+"POT-Creation-Date: 2024-10-02 03:08+0300\n"
 "PO-Revision-Date: 2024-10-02 03:08+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -488,7 +488,7 @@ msgstr "Вы забрали телефон!"
 
 #: app/templates/phone/phone.html:22 app/templates/settings/settings.html:48
 msgid "Put phone in device!"
-msgstr "Вставьте телефон в устройство!"
+msgstr "Вы сдали телефон!"
 
 #: app/templates/phone/phone.html:29 app/templates/settings/settings.html:55
 msgid "You haven't got phone history!"
@@ -542,13 +542,13 @@ msgstr "Новый пароль"
 msgid "Profile Settings"
 msgstr "Настройки профиля"
 
-#: app/templates/settings/settings.html:15
-msgid "Name:"
-msgstr "Имя:"
-
 #: app/templates/settings/settings.html:19
 msgid "Surname:"
 msgstr "Фамилия:"
+
+#: app/templates/settings/settings.html:15
+msgid "Name:"
+msgstr "Имя:"
 
 #: app/templates/settings/settings.html:23
 msgid "Date of Birth:"

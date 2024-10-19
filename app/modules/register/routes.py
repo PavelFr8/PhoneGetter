@@ -1,4 +1,4 @@
-from flask import render_template, make_response, redirect, url_for
+from flask import render_template, make_response, redirect, url_for, request
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_babel import lazy_gettext as _l
 
@@ -28,7 +28,8 @@ def register():
                 name=form.name.data,
                 surname=form.surname.data,
                 date_of_birth=form.date_of_birth.data,
-                email=form.email.data
+                email=form.email.data,
+                utc=request.cookies.get('timezone')
             )
             user.set_password(form.password.data)
             db.session.add(user)

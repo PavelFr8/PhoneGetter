@@ -28,8 +28,14 @@ def create_device():
     name = request.json['name']
     ip = request.json['ip']
 
+    device = db.session.query(Device).filter_by(ip=ip).first()
+
     # Create new device
-    device = Device(name=name, ip=ip)
+    if not device:
+        device = Device(name=name, ip=ip)
+    else:
+        return jsonify({"status": "error", "message": "Device with that ip already exist"}), 400
+
 
     # Generate API token
     token = device.generate_api_token()
@@ -65,14 +71,14 @@ def reset_connection(device):
 
 @module.route('/update_data', methods=['PUT'])
 @api_token_required
-@json_is_valid({"cells": dict[str: list[int, bool]], "changed_cell": int})
+@json_is_valid({"changed_cell": int, "state": bool})
 def update_data(device):
     """
     Updates the device's cell data and tracks changes in the user's phone history.
     Requires valid API token.
 
     Request JSON body:
-        - cells (dict): A dictionary containing the cell data.
+        - state (bool): A new state of changes cell.
         - changed_cell (int): The identifier of the cell that has been updated.
 
     :param device: The device associated with the provided API token.
@@ -82,19 +88,21 @@ def update_data(device):
         - device (str): The name of the device.
         - HTTP status code 200, or relevant error codes in case of issues (400 for invalid data, 404 if user not found).
     """
-    cells = request.json['cells']
+    cells = json.loads(device.cells)
+
+    state = request.json['state']
     changed_cell = str(request.json['changed_cell'])
 
-    if changed_cell not in cells:
+    if str(changed_cell) not in cells.keys():
         return jsonify({"status": "error", "message": "Invalid data for 'changed_cell'"}), 400
-
-    device.cells = json.dumps(cells)
 
     # Extract user ID from the changed cell data and find the user
     user_id = cells[changed_cell][0]
     user: User = db.session.query(User).get(user_id)
     if not user:
         return jsonify({"status": "error", "message": "User not found"}), 404
+
+    cells[str(changed_cell)] = [user_id, state]
 
     if not user.phone:
         phone_history = PhoneHistory(user_id=user.id, history=json.dumps({}))
@@ -104,6 +112,7 @@ def update_data(device):
 
     # Update user's phone history based on the cell change
     user.phone.update_history(not cells[changed_cell][1])
+    device.cells = json.dumps(cells)
 
     db.session.commit()
     return jsonify({"status": "success", "device": device.name}), 200
