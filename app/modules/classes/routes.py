@@ -125,7 +125,8 @@ def invite_student(class_id, token):
                 if cell[0] == user.id:
                     return render_template('classes/added.html', name=device.name), 200
             try:
-                cells[str(int(list(cells.keys())[-1]) + 1)] = [user.id, False]
+                available_cells = set(list(range(1, 31))) - set(cells.keys())
+                cells[str(min(available_cells))] = [user.id, False]
             except:
                 cells["1"] = [user.id, False]
 
