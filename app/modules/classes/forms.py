@@ -9,3 +9,6 @@ class InviteForm(FlaskForm):
 
 class SecretCodeForm(FlaskForm):
     secret_code = StringField(_l('Secret Code'), validators=[DataRequired()], render_kw={"placeholder": _l("Enter secret code")})
+
+class ChangeClassNameForm(FlaskForm):
+    invite_link = StringField(_l('Change Name'), validators=[DataRequired()], render_kw={"placeholder": _l("Enter new name")})

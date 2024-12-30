@@ -31,31 +31,39 @@ msgstr "Секретный код"
 msgid "Enter secret code"
 msgstr "Введите секретный код"
 
-#: app/modules/classes/routes.py:22
+#: app/modules/classes/forms.py:14
+msgid "Change Name"
+msgstr "Изменить Название"
+
+#: app/modules/classes/forms.py:14
+msgid "Enter new name"
+msgstr "Введите новое название"
+
+#: app/modules/classes/routes.py:47
 msgid "Your classes"
 msgstr "Ваши классы"
 
-#: app/modules/classes/routes.py:75
+#: app/modules/classes/routes.py:99
 msgid "Invalid secret code. Please try again."
 msgstr "Неверный секретный код. "
 
-#: app/modules/classes/routes.py:80
+#: app/modules/classes/routes.py:104
 msgid "Device already has owner"
 msgstr "У устройства уже есть владелец"
 
-#: app/modules/classes/routes.py:85
+#: app/modules/classes/routes.py:109
 msgid "Class added successfully!"
 msgstr "Класс успешно добавлен!"
 
-#: app/modules/classes/routes.py:91
+#: app/modules/classes/routes.py:115
 msgid "Too old secret code"
 msgstr "Слишком старый секретный код"
 
-#: app/modules/classes/routes.py:93
+#: app/modules/classes/routes.py:117
 msgid "Form validation failed."
 msgstr "Проверка формы не удалась."
 
-#: app/modules/classes/routes.py:152
+#: app/modules/classes/routes.py:178 app/modules/classes/routes.py:202
 msgid "Permission denied"
 msgstr "Разрешение отклонено"
 
@@ -209,22 +217,38 @@ msgstr "Неверная ссылка"
 msgid "Sorry, this link has expired."
 msgstr "Извините, срок действия этой ссылки истек."
 
-#: app/templates/classes/class.html:12
+#: app/templates/classes/class.html:16
 msgid "Invite Student"
 msgstr "Пригласить ученика"
 
-#: app/templates/classes/class.html:21
+#: app/templates/classes/class.html:25
 msgid "Invite New Student"
 msgstr "Пригласить нового ученика"
 
-#: app/templates/classes/class.html:22 app/templates/classes/classes.html:45
-#: app/templates/classes/classes.html:58
+#: app/templates/classes/class.html:22 app/templates/classes/classes.html:49
+#: app/templates/classes/classes.html:64
 msgid "Close"
 msgstr "Закрыть"
 
-#: app/templates/classes/class.html:31
+#: app/templates/classes/class.html:35
 msgid "Copy"
 msgstr "Копировать"
+
+#: app/templates/classes/class.html:48
+msgid "Change Class Name"
+msgstr "Изменить название класса"
+
+#: app/templates/classes/class.html:55
+msgid "New Class Name"
+msgstr "Новое название"
+
+#: app/templates/classes/class.html:56
+msgid "Enter new class name"
+msgstr "Введите новое название класса"
+
+#: app/templates/classes/class.html:61
+msgid "Cancel"
+msgstr "Отмена"
 
 #: app/templates/classes/class.html:43
 msgid "Students Who Submitted Phones"
@@ -272,31 +296,38 @@ msgstr "Ваши классы"
 msgid "New"
 msgstr "Новый"
 
-#: app/templates/classes/classes.html:21
-msgid "Phones"
-msgstr "Телефоны"
+msgid "Your phone %(state)s device"
+msgstr "Ваш телефон — %(state)s устройстве"
 
-#: app/templates/classes/classes.html:28
+#: app/modules/classes/routes.py:36
+msgid "in"
+msgstr "в"
+
+#: app/modules/classes/routes.py:37
+msgid "outside"
+msgstr "не в"
+
+#: app/templates/classes/classes.html:33
 msgid "Enter Class"
 msgstr "Войти в класс"
 
-#: app/templates/classes/classes.html:34
+#: app/templates/classes/classes.html:40
 msgid "You haven't got any classes!"
 msgstr "У вас нет виртуальных классов!"
 
-#: app/templates/classes/classes.html:44
+#: app/templates/classes/classes.html:50
 msgid "Add New Class"
 msgstr "Добавить новый класс"
 
-#: app/templates/classes/classes.html:51
+#: app/templates/classes/classes.html:57
 msgid "Enter Secret Code"
 msgstr "Введите секретный код"
 
-#: app/templates/classes/classes.html:53
+#: app/templates/classes/classes.html:59
 msgid "You can get the secret code on the \"Phone Receiver\" screen."
 msgstr "Вы можете получить секретный код на экране приёмника телефонов."
 
-#: app/templates/classes/classes.html:59
+#: app/templates/classes/classes.html:65
 #: app/templates/settings/change_password.html:51
 msgid "Submit"
 msgstr "Отправить"
