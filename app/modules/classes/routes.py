@@ -8,7 +8,7 @@ from flask_babel import lazy_gettext as _l
 
 from app.utils.generate_invite_link import generate_invite_link
 from . import module, forms
-from app import db
+from app import db, logger
 from app.models import InviteLink, User, Device, PhoneHistory, NewClassTokens
 
 
@@ -33,16 +33,17 @@ def classes():
                 for value in device.cells.values():
                     if value[0] == current_user.id:
                         device.student = True
-                        state_translations = {"in": _l("in"),
-                                              "outside": _l("outside")}
-                        device.state = device.state = state_translations['in'] if value[1] else state_translations['outside']
+                        state_translations = {"in": _l("in"), "outside": _l("outside")}
+                        device.state = state_translations['in'] if value[1] else state_translations['outside']
                         user_devices.append(device)
                         break
         if study_classes:
             study_classes.extend(user_devices)
         else:
             study_classes = user_devices
+        logger.debug(f"Returning classes data for user {current_user.id}")
     except Exception as e:
+        logger.error(f"Error occurred while fetching classes for user {current_user.id}: {e}")
         study_classes = None
     return render_template('classes/classes.html', title=_l('Your classes'), study_classes=study_classes, form=forms.SecretCodeForm())
 
@@ -94,7 +95,6 @@ def add_by_code():
     if form.validate_on_submit():
         secret_code = form.secret_code.data
         connection: NewClassTokens = NewClassTokens.query.filter_by(token=secret_code).first()
-        # print(connection)
 
         if not connection:
             return jsonify({'status': 'error', 'message': _l('Invalid secret code. Please try again.')}), 400
@@ -106,15 +106,17 @@ def add_by_code():
 
             device.owner_id = current_user.id
             db.session.commit()
-
+            logger.info(f"User {current_user.id} successfully added device {device.id} to their classes")
             return jsonify({'status': 'success', 'message': _l('Class added successfully!')}), 200
         else:
+            logger.debug(f"Secret code expired for user {current_user.id}: {secret_code}")
             connections: list[NewClassTokens] = NewClassTokens.query.where(NewClassTokens.expires_at <= datetime.utcnow()).all()
             for conn in connections:
                 db.session.delete(conn)
             db.session.commit()
             return jsonify({'status': 'error', 'message': _l('Too old secret code')}), 404
     else:
+        logger.error(f"Form validation failed for user {current_user.id}")
         return jsonify({'status': 'error', 'message': _l('Form validation failed.')}), 400
 
 
@@ -138,7 +140,8 @@ def invite_student(class_id, token):
 
             cells = json.loads(device.cells)
 
-            if len(cells) >= 30:
+            if len(cells) >= 25:
+                logger.debug(f"User {user.id} tried to join device {device.id} but cell limit reached")
                 return render_template('classes/users_limit.html'), 403
             if not user.phone:
                 phone_history = PhoneHistory(user_id=user.id, history=json.dumps({}))
@@ -148,6 +151,7 @@ def invite_student(class_id, token):
 
             for cell in cells.values():
                 if cell[0] == user.id:
+                    logger.info(f"User {user.id} already added to device {device.id}")
                     return render_template('classes/added.html', name=device.name), 200
             try:
                 available_cells = set(list(range(1, 31))) - set([int(cell) for cell in cells.keys()])
@@ -164,8 +168,10 @@ def invite_student(class_id, token):
             for elem in expires_links:
                 db.session.delete(elem)
             db.session.commit()
+            logger.debug(f"Invite link expired for class {class_id} and token {token}")
             return render_template('errors/bad_link.html'), 403
     else:
+        logger.debug(f"Invalid invite link for class {class_id} and token {token}")
         return render_template('errors/bad_link.html'), 403
 
 
@@ -176,12 +182,14 @@ def remove_user(class_id, user_id):
     device: Device = db.session.query(Device).get(class_id)
 
     if device.owner_id != current_user.id:
+        logger.debug(f"User {current_user.id} attempted to remove user {user_id} from device {device.id} without permission")
         return jsonify({'status': 'error', 'message': _l('Permission denied')}), 403
 
     cells = json.loads(device.cells)
 
     for cell, cell_data in cells.items():
         if cell_data[0] == user_id:
+            logger.info("Removing user {user_id} from device {device.id}")
             del cells[cell]
             break
 
@@ -199,11 +207,17 @@ def change_class_name(class_id):
     device: Device = db.session.query(Device).get(class_id)
 
     if device.owner_id != current_user.id:
+        logger.debug(f"User {current_user.id} attempted to change name of device {device.id} without permission")
         return jsonify({'status': 'error', 'message': _l('Permission denied')}), 403
 
-    device.name = request.json['name']
+    new_name = request.json.get('name', '').strip()
+    if not new_name:
+        logger.debug(f"User {current_user.id} tried to set empty name for device {device.id}")
+        return jsonify({'status': 'error', 'message': _l('Class name cannot be empty')}), 400
+
+    device.name = new_name
 
     db.session.commit()
+    logger.info(f"User {current_user.id} successfully changed the name of device {device.id} to '{new_name}'")
 
     return jsonify({"status": "success", "device": device.name}), 200
-

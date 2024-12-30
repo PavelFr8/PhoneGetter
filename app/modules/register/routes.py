@@ -16,6 +16,7 @@ def register():
 
     form = RegisterForm()
     if form.validate_on_submit():
+        logger.debug(f"Processing registration form for email: {form.email.data}")
         if form.password.data != form.password_again.data:
             return render_template('register/register.html', title=_l('Sign Up'), form=form,
                                    message=_l('Passwords are different!'))
@@ -34,9 +35,10 @@ def register():
             user.set_password(form.password.data)
             db.session.add(user)
             db.session.commit()
+            logger.info(f"User {form.email.data} successfully registered.")
             return redirect(url_for('register.login'))
         except Exception as e:
-            logger.error(f"Error registering user: {e}")
+            logger.error(f"Error registering user with email {form.email.data}: {e}")
             db.session.rollback()
             return render_template('register/register.html', title=_l('Registration'), form=form,
                                    message=_l('An error occurred during registration.'))
@@ -52,6 +54,7 @@ def login():
 
     form = LoginForm()
     if form.validate_on_submit():
+        logger.debug(f"Processing login form for email: {form.email.data}")
         try:
             user = User.query.filter_by(email=form.email.data).first()
             if user and user.check_password(form.password.data):

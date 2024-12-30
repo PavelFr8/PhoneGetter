@@ -65,11 +65,11 @@ function changeClassName() {
     })
     .then(data => {
         if (data.status === 'success') {
-            // Обновление названия класса
+            // Update class name
             document.querySelector('.page-title').textContent = data.device;
             alert('Class name updated successfully!');
 
-            // Закрытие модального окна
+            // Close modal
             const modal = bootstrap.Modal.getInstance(document.getElementById('changeClassNameModal'));
             modal.hide();
         } else {

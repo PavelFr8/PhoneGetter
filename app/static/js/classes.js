@@ -4,17 +4,17 @@ document.getElementById('submitCodeBtn').addEventListener('click', function() {
     fetch('class/new', {
         method: 'POST',
         headers: {
-            'X-CSRFToken': '{{ csrf_token() }}'  // Добавляем CSRF токен в заголовок
+            'X-CSRFToken': '{{ csrf_token() }}'
         },
         body: formData
     })
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
-            alert(data.message);  // Показать сообщение об успехе
-            location.reload();  // Обновить страницу или добавить другую логику
+            alert(data.message);
+            location.reload();
         } else {
-            alert(data.message);  // Показать сообщение об ошибке
+            alert(data.message);
         }
     })
     .catch(error => console.error('Error:', error));

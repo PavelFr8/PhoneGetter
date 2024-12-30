@@ -11,7 +11,7 @@ db.init_app(app)
 with app.test_request_context():
     db.create_all()
 
-
+# init db migration
 migrate = Migrate(app, db)
 
 # init login manager

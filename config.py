@@ -27,9 +27,10 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    DEBUG = False
+    LOG_LEVEL = 'INFO'
 
 
 class DevelopmentConfig(Config):
-    DEVELOPMENT = True
     DEBUG = True
+    DEVELOPMENT = True
+    DEBUG_TB_INTERCEPT_REDIRECTS = False

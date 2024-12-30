@@ -1,4 +1,5 @@
 import os
+import sys
 
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
@@ -8,22 +9,31 @@ from flask_babel import Babel
 from flask_wtf import CSRFProtect
 
 from dotenv import load_dotenv
+from loguru import logger
 
-import logging
+# Initialize extensions
+db = SQLAlchemy()
+login_manager = LoginManager()
+csrf = CSRFProtect()
+babel = Babel()
 
-
-db = SQLAlchemy()  # create database
-login_manager = LoginManager()  # create manager for login
-csrf = CSRFProtect()  # create csrf protection
-babel = Babel()  # create babel manager
-
-# create logger
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
+# Setup logger
+logger.remove()
+logger.add(
+    "app.log",
+    level="DEBUG",
+    rotation="10 MB",
+    compression="zip"
+)
+logger.add(
+    sys.stdout,
+    level="DEBUG"
+)
 
 def create_app():
-    # create Flask app
+    """
+    Factory function to create a Flask application.
+    """
     app = Flask(__name__)
 
     # get from .env app settings
@@ -31,11 +41,14 @@ def create_app():
     settings = os.environ.get('APP_SETTINGS')
     app.config.from_object(settings)
 
+    # Log application startup
+    logger.info("Starting Flask application...")
+
     if app.debug == True:
         try:
             toolbar = DebugToolbarExtension(app)
         except Exception as e:
-            app.logger.error(f"Failed to initialize DebugToolbarExtension: {e}")
+            logger.error(f"Failed to initialize DebugToolbarExtension: {e}")
 
     # register API
     import app.api as api
@@ -60,5 +73,7 @@ def create_app():
 
     import app.modules.register as register
     app.register_blueprint(register.module)
+
+    logger.info("Flask application initialized successfully.")
 
     return app
