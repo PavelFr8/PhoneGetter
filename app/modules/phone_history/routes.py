@@ -5,6 +5,7 @@ from flask import render_template
 from flask_login import login_required, current_user
 
 from . import module
+from app import logger
 
 
 # Create "Your phone" page
@@ -14,6 +15,7 @@ def history():
     try:
         phone_history = json.loads(current_user.phone.history)
 
+        # filter history
         filtered = {date: events for date, events in phone_history.items() if events is not None}
 
         filtered = dict(sorted(
@@ -27,7 +29,8 @@ def history():
 
         if not phone_history:
             filtered = None
-    except Exception:
+    except Exception as e:
+        logger.error(f"Error fetching phone history for user {current_user.id}: {e}")
         filtered = None
 
     return render_template('phone/phone.html', history=filtered)

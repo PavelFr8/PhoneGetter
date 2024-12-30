@@ -389,93 +389,68 @@ msgid "The administrator has been notified. We apologize for the inconvenience!"
 msgstr "Администратор уведомлен. Приносим извинения за ошибки в работе!"
 
 #: app/templates/main/main.html:18
-msgid ""
-"We are a small teem of two students who don`t want to get \"2\" by "
-"Project. Our teem works hard and believes that one day we finally will be"
-" able to use Raspberry. To be honest, while writing this words i realise "
-"that my imagination ended and i have no idea that i can write... Still no"
-" idea... Mmm... The most sadness thing is that i don`t even know any "
-"jokes in english..."
-msgstr ""
-"Мы — небольшая команда из двух учеников, которые не хотят получать \"2\" "
-"по проекту. Наша команда усердно работает и верит, что однажды мы, "
-"наконец, сможем пользоваться Raspberry. Честно говоря, пока я пишу эти "
-"слова, я понимаю, что мое воображение закончилось, и я понятия не имею, "
-"что я могу писать... До сих пор понятия не имею... Ммм... Самое "
-"печальное, что я даже не знаю ни одной шутки на английском..."
+msgid "We are a small team of two schoolchildren who, as part of an educational project, developed a system for monitoring phones in a school in real time. We tried to make it as convenient and secure as possible. Our system includes a device for receiving a phone and a website to which the device can be connected. The device ensures safe storage of the phone, and the website provides all the data to teachers and students in a format convenient for them."
+msgstr "Мы — небольшая команда из двух школьников, которые в рамках образовательного проекта разработали систему мониторинга телефонов в школе в режиме реального времени. Мы постарались сделать ее максимально удобной и безопасной. Наша система включает в себя устройство для приема телефона и веб-сайт, к которому можно подключить устройство. Устройство обесечивает безопасное хранение телефона, а сайт предоставляет все данные для учителей и учеников в удобном для них формате."
 
 #: app/templates/main/main.html:26
 msgid "Why us?"
 msgstr "Почему мы?"
 
 #: app/templates/main/main.html:28
-msgid "XD we smart"
-msgstr "XD мы умные"
+msgid "No analogues on the market"
+msgstr "Нет аналогов на рынке"
 
 #: app/templates/main/main.html:30
-msgid "No experience in Raspberry coding"
-msgstr "Нет опыта программирования на Raspberry."
+msgid "Low cost of the project"
+msgstr "Низкая стоимость проекта"
 
 #: app/templates/main/main.html:31
-msgid "A lot of stupid mistakes"
-msgstr "Много глупых ошибок"
+msgid "Unique functionality"
+msgstr "Актуальная идея"
 
 #: app/templates/main/main.html:32
-msgid "We get all our ideas from ChatGPT"
-msgstr "Все идеи мы получаем из ChatGPT."
+msgid "A topical idea"
+msgstr "Актуальная идея"
 
 #: app/templates/main/main.html:36
 msgid "Good in development"
 msgstr "Хороши в разработке"
 
 #: app/templates/main/main.html:38
-msgid "No experience in teem work"
-msgstr "Нет опыта работы в команде."
+msgid "Good teamwork"
+msgstr "Хорошая работа в команде"
 
 #: app/templates/main/main.html:39
-msgid "Code = rubbish"
-msgstr "Код = мусор"
+msgid "Structured code"
+msgstr "Структурированный код"
 
 #: app/templates/main/main.html:40
-msgid "1. Do 2. Think"
-msgstr "1. Делай 2. Думай"
+msgid "We will ensure data security"
+msgstr "Обеспечим безопасность данных"
 
 #: app/templates/main/main.html:44
 msgid "Make teachers live easier"
 msgstr "Облегчим жизнь учителям"
 
 #: app/templates/main/main.html:46
-msgid "Hakuna Matata!"
-msgstr "Акуна Матата!"
+msgid "Real-time phone monitoring"
+msgstr "Мониторинг телефонов в реальном времени"
 
 #: app/templates/main/main.html:47
-msgid "It will control all teenagers"
-msgstr "Мы будем контролировать всех подростков."
+msgid "Keeping your phones safe throughout the day"
+msgstr "Безопасность телефонов в течение дня"
 
 #: app/templates/main/main.html:48
-msgid "We will check the history of browser then your phone will be in device"
-msgstr ""
-"Мы проверим историю браузера, после чего ваш телефон окажется на "
-"устройстве."
+msgid "User-friendly interface"
+msgstr "Удобный интерфейс"
 
 #: app/templates/main/main.html:67
 msgid "Our Device"
 msgstr "Наше устройство"
 
 #: app/templates/main/main.html:68
-msgid ""
-"Our device is designed to provide seamless and secure monitoring of all "
-"your communications. Built with cutting-edge technology, it ensures that "
-"you have complete control and visibility over your phone activities. "
-"Whether it`s for personal safety or business management, our device "
-"offers unmatched reliability and performance."
-msgstr ""
-"Наше устройство разработано для обеспечения бесперебойного и безопасного "
-"мониторинга всех ваших коммуникаций. Созданное с использованием передовых"
-" технологий, оно гарантирует вам полный контроль и видимость действий на "
-"вашем телефоне. Будь то для личной безопасности или управления бизнесом, "
-"наше устройство обеспечивает непревзойденную надежность и "
-"производительность."
+msgid "Our device was developed to provide safe storage of phones. The main function is the ability to integrate with the site. When integrated, the site and the device form a single ecosystem, which greatly facilitates the surveillance of schoolchildren's mobile devices."
+msgstr "Наше устройство было разработано для обеспечения безопасного хранения телефонов. Основной функцией является возможность интеграции с сайтом. При интеграции, сайт и устройство образуют единую экосистему, которая значительно облегчает слежку за мобильными устройства школьников."
 
 #: app/templates/main/main.html:77
 msgid "Benefits"
@@ -486,8 +461,8 @@ msgid "Advanced Security"
 msgstr "Повышенная безопасность"
 
 #: app/templates/main/main.html:85
-msgid "Advanced security features to protect your data."
-msgstr "Расширенные функции безопасности для защиты ваших данных."
+msgid "Convenient and informative interface for both students and teachers."
+msgstr "Удобный и информативный интерфейс и для учеников и для учителей."
 
 #: app/templates/main/main.html:93
 msgid "Easy Interface"
@@ -498,12 +473,12 @@ msgid "Easy-to-use interface with detailed analytics."
 msgstr "Удобный интерфейс с подробной аналитикой."
 
 #: app/templates/main/main.html:102
-msgid "24/7 Support"
-msgstr "Поддержка 24/7"
+msgid "Uniqueness of the offer"
+msgstr "Уникальность предложения"
 
 #: app/templates/main/main.html:103
-msgid "24/7 customer support to assist with any queries."
-msgstr "Круглосуточная поддержка клиентов, готовая помочь с любыми вопросами."
+msgid "There are no analogues to our project on the market.."
+msgstr "На рынке нет аналогов нашему проекту."
 
 #: app/templates/main/main.html:113
 msgid "Register Now"

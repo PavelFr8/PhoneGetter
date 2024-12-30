@@ -24,9 +24,11 @@ def settings():
                 filtered[item[0]] = item[1]
         if not history:
             filtered = None
-    except Exception:
+    except Exception as e:
+        logger.error(f"Error fetching phone history for user {current_user.id}: {e}")
         filtered = None
     return render_template('settings/settings.html', title=_l('Settings'), history=filtered)
+
 
 # Update user password
 @module.route('/change_password/<int:id>', methods=['GET', 'POST'])
@@ -42,6 +44,7 @@ def change_password(id: int):
             if user.check_password(form.curr_password.data):
                 user.set_password(form.new_password.data)
                 db.session.commit()
+                logger.debug(f"Password successfully changed for user {user.id}")
                 return redirect(url_for('settings.settings'))
             else:
                 form.email.data = user.email
