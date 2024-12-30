@@ -24,3 +24,5 @@ venv/*
 .flaskenv
 /migrations/
 /instance/
+/models/
+/docs/

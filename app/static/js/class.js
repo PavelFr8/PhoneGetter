@@ -39,6 +39,48 @@ function copyInviteLink() {
     navigator.clipboard.writeText(copyText.value);
 }
 
+function changeClassName() {
+    const classId = document.getElementById("changeClassNameModal").getAttribute("data-class-id");
+    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+    const newClassName = document.getElementById("className").value.trim();
+
+    if (!newClassName) {
+        alert('Class name cannot be empty!');
+        return;
+    }
+
+    fetch(`/classes/class/${classId}/change_name`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ name: newClassName })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            // Обновление названия класса
+            document.querySelector('.page-title').textContent = data.device;
+            alert('Class name updated successfully!');
+
+            // Закрытие модального окна
+            const modal = bootstrap.Modal.getInstance(document.getElementById('changeClassNameModal'));
+            modal.hide();
+        } else {
+            alert(data.message || 'An error occurred while updating the class name.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+document.getElementById("saveClassNameButton").addEventListener("click", changeClassName);
+
 function generateInviteLink() {
     const classId = document.getElementById("inviteModal").getAttribute("data-class-id");
     const csrfToken = document.querySelector('input[name="csrf_token"]').value;

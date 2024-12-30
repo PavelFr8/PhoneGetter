@@ -1,7 +1,8 @@
+import copy
 from datetime import datetime
 import json
 
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 from flask_login import login_required, current_user
 from flask_babel import lazy_gettext as _l
 
@@ -17,6 +18,30 @@ from app.models import InviteLink, User, Device, PhoneHistory, NewClassTokens
 def classes():
     try:
         study_classes = current_user.get_classes()
+        devices = Device.query.all()
+        if study_classes:
+            for study_cls in study_classes:
+                study_cls.student = False
+        user_devices = []
+        if devices:
+            for device in devices:
+                device = copy.deepcopy(device)
+                try:
+                    device.cells = json.loads(device.cells)
+                except:
+                    pass
+                for value in device.cells.values():
+                    if value[0] == current_user.id:
+                        device.student = True
+                        state_translations = {"in": _l("in"),
+                                              "outside": _l("outside")}
+                        device.state = device.state = state_translations['in'] if value[1] else state_translations['outside']
+                        user_devices.append(device)
+                        break
+        if study_classes:
+            study_classes.extend(user_devices)
+        else:
+            study_classes = user_devices
     except Exception as e:
         study_classes = None
     return render_template('classes/classes.html', title=_l('Your classes'), study_classes=study_classes, form=forms.SecretCodeForm())
@@ -58,7 +83,7 @@ def study_class(id):
                            class_id=phone_class.id,
                            students_with_phones=students_with_phones,
                            students_without_phones=students_without_phones,
-                           form=form)
+                           form=form, form2=forms.ChangeClassNameForm())
 
 
 # Create new class
@@ -165,3 +190,20 @@ def remove_user(class_id, user_id):
     db.session.commit()
 
     return jsonify({"status": "success", "device": device.name}), 200
+
+
+# Change class name
+@module.route('/class/<int:class_id>/change_name', methods=['PUT'])
+@login_required
+def change_class_name(class_id):
+    device: Device = db.session.query(Device).get(class_id)
+
+    if device.owner_id != current_user.id:
+        return jsonify({'status': 'error', 'message': _l('Permission denied')}), 403
+
+    device.name = request.json['name']
+
+    db.session.commit()
+
+    return jsonify({"status": "success", "device": device.name}), 200
+
