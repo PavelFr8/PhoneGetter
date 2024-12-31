@@ -32,6 +32,37 @@ function removeStudent(studentId) {
     .catch(error => console.error('Error:', error));
 }
 
+function returnPhone(studentId) {
+    const classId = document.getElementById("inviteModal").getAttribute("data-class-id");
+    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+
+    if (!confirm('Are you sure you want to return phone to student?')) {
+        return;
+    }
+
+    fetch(`/classes/class/${classId}/return_phone/${studentId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            location.reload();
+        } else {
+            console.error('Failed to remove student:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
 function copyInviteLink() {
     const copyText = document.getElementById("inviteLink");
     copyText.select();
