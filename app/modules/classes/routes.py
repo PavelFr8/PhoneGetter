@@ -1,6 +1,7 @@
 import copy
 from datetime import datetime
 import json
+import requests
 
 from flask import render_template, jsonify, request
 from flask_login import login_required, current_user
@@ -189,7 +190,7 @@ def remove_user(class_id, user_id):
 
     for cell, cell_data in cells.items():
         if cell_data[0] == user_id:
-            logger.info("Removing user {user_id} from device {device.id}")
+            logger.info(f"Removing user {user_id} from device {device.id}")
             del cells[cell]
             break
 
@@ -221,3 +222,39 @@ def change_class_name(class_id):
     logger.info(f"User {current_user.id} successfully changed the name of device {device.id} to '{new_name}'")
 
     return jsonify({"status": "success", "device": device.name}), 200
+
+
+# Return phone to user in class
+@module.route('/class/<int:class_id>/return_phone/<int:user_id>', methods=['GET'])
+@login_required
+def return_phone(class_id, user_id):
+    device: Device = db.session.query(Device).get(class_id)
+
+    if device.owner_id != current_user.id:
+        logger.debug(f"User {current_user.id} attempted to remove user {user_id} from device {device.id} without permission")
+        return jsonify({'status': 'error', 'message': _l('Permission denied')}), 403
+
+    cells = json.loads(device.cells)
+
+    user_cell = -1
+    for cell, cell_data in cells.items():
+        if cell_data[0] == user_id:
+            user_cell = int(cell)
+            break
+    if user_cell == -1:
+        return jsonify({'status': 'error', 'message': _l('Unknown user')}), 403
+
+    r = requests.post("https://phonegetter-mqtt.onrender.com/send_command",
+                      json={
+                            "device_api_token": device.api_token,
+                            "cell_id": user_cell,
+                           })
+    if r.json()['status'] == 'success':
+        cells[user_cell] = [user_id, False]
+        device.cells = json.dumps(cells)
+        db.session.commit()
+        logger.info(f"User {current_user.id} successfully return phone to User {user_id}")
+        return jsonify({"status": "success", "device": device.name}), 200
+    else:
+        logger.error(f"User {current_user.id} failed returning phone to User {user_id}")
+        return jsonify({'status': 'error', 'message': _l('')}), 403

@@ -389,8 +389,8 @@ msgid "The administrator has been notified. We apologize for the inconvenience!"
 msgstr "Администратор уведомлен. Приносим извинения за ошибки в работе!"
 
 #: app/templates/main/main.html:18
-msgid "We are a small team of two schoolchildren who, as part of an educational project, developed a system for monitoring phones in a school in real time. We tried to make it as convenient and secure as possible. Our system includes a device for receiving a phone and a website to which the device can be connected. The device ensures safe storage of the phone, and the website provides all the data to teachers and students in a format convenient for them."
-msgstr "Мы — небольшая команда из двух школьников, которые в рамках образовательного проекта разработали систему мониторинга телефонов в школе в режиме реального времени. Мы постарались сделать ее максимально удобной и безопасной. Наша система включает в себя устройство для приема телефона и веб-сайт, к которому можно подключить устройство. Устройство обесечивает безопасное хранение телефона, а сайт предоставляет все данные для учителей и учеников в удобном для них формате."
+msgid "We are a small team of two schoolchildren who, as part of a school project, developed a system for monitoring phones in a school in real time. We tried to make it as convenient and secure as possible. Our system includes a device for receiving a phone and a website to which the device can be connected. The device ensures safe storage of the phone, and the website provides all the data to teachers and students in a format convenient for them."
+msgstr "Мы — небольшая команда из двух школьников, которые в рамках школьного проекта разработали систему мониторинга телефонов в школе в режиме реального времени. Мы постарались сделать ее максимально удобной и безопасной. Наша система включает в себя устройство для приема телефона и веб-сайт, к которому можно подключить устройство. Устройство обесечивает безопасное хранение телефона, а сайт предоставляет все данные для учителей и учеников в удобном для них формате."
 
 #: app/templates/main/main.html:26
 msgid "Why us?"
@@ -450,7 +450,7 @@ msgstr "Наше устройство"
 
 #: app/templates/main/main.html:68
 msgid "Our device was developed to provide safe storage of phones. The main function is the ability to integrate with the site. When integrated, the site and the device form a single ecosystem, which greatly facilitates the surveillance of schoolchildren's mobile devices."
-msgstr "Наше устройство было разработано для обеспечения безопасного хранения телефонов. Основной функцией является возможность интеграции с сайтом. При интеграции, сайт и устройство образуют единую экосистему, которая значительно облегчает слежку за мобильными устройства школьников."
+msgstr "Наше устройство было разработано для обеспечения безопасного хранения телефонов. Основной функцией является возможность интеграции с сайтом. При интеграции, сайт и устройство образуют единую экосистему, которая значительно облегчает слежку за мобильными устройствами школьников."
 
 #: app/templates/main/main.html:77
 msgid "Benefits"
