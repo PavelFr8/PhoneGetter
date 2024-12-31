@@ -69,7 +69,24 @@ h2 {
     }
 
     .page-title {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
+        text-align: center; /* Центрируем заголовок на маленьких экранах */
+        margin-bottom: 15px;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        align-items: stretch; /* Растягиваем кнопки на всю ширину */
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    .btn-outline-secondary {
+        font-size: 1rem;
+        padding: 8px 12px;
     }
 
     h2 {

@@ -21,7 +21,7 @@
                             {% if class.student == False %}
                             <h5 class="class-phones">{{ _('Phones') }}: {{ class.phones }} / 30</h5>
                             {% else %}
-                            <h5 class="class-phones">{{ _('Your phone %(state)s device', state=class.state) }}</h5>
+                            <h5 class="class-phones" style="margin-left: 15px;">{{ _('Your phone %(state)s device', state=class.state) }}</h5>
                             {% endif %}
                         </div>
                         <div class="class-icon text-center">
