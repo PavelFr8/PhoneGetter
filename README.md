@@ -1,4 +1,4 @@
-# 📱 PhoneGetter
+![screenshot](logo.png)
 
 ## 🧑‍💻 About Us
 We are a small team of two schoolchildren who, as part of a school project, developed a system for monitoring phones in a school in real time. Our goal was to create a system that is both convenient and secure. The project consists of two main components:
