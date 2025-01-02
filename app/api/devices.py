@@ -52,9 +52,6 @@ def reset_connection(device):
     """
     Remove connection between owner and device. Requires valid API token.
 
-    Request JSON body:
-        - owner_id (int): The owner ID to be removed (though not directly used here).
-
     :param device: The device associated with the provided API token.
 
     :return: JSON response:
@@ -62,7 +59,7 @@ def reset_connection(device):
         - device (str): The name of the device.
         - HTTP status code 200.
     """
-    device.owner_id = ''
+    device.owner_id = None
     device.cells = json.dumps({})
     db.session.commit()
 
