@@ -141,7 +141,7 @@ def invite_student(class_id, token):
 
             cells = json.loads(device.cells)
 
-            if len(cells) >= 25:
+            if len(cells) >= 20:
                 logger.debug(f"User {user.id} tried to join device {device.id} but cell limit reached")
                 return render_template('classes/users_limit.html'), 403
             if not user.phone:
