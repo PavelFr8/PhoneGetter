@@ -41,7 +41,7 @@ Together, these components form a single ecosystem that simplifies the process o
 | **Mqtt Broker**      | [PhoneGetter MQTT Broker](https://github.com/PavelFr8/PhoneGetter_mqtt)                                         |
 | **PhoneGetter API**  | [PhoneGetter API Documentation](https://github.com/PavelFr8/PhoneGetter/blob/main/app/api/api_documentation.md) |
 | **Device**           | [Device Documentation](#)                                                                                       |
-| **Website**          | [Website Guide](https://github.com/PavelFr8/PhoneGetter/blob/main/app/api_documentation.md)                     |
+| **Website**          | [Website Guide](https://github.com/PavelFr8/PhoneGetter/blob/main/app/website_guide.md)                     |
 
 
 
