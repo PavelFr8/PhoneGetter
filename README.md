@@ -49,7 +49,7 @@ Together, these components form a single ecosystem that simplifies the process o
 #### 1️⃣ **Clone The Repository**
  ```bash
  git clone https://github.com/PavelFr8/PhoneGetter.git
- cd azon
+ cd PhoneGetter
  ```
 #### 2️⃣ **Set Up Virtual Environment**
 
