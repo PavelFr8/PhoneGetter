@@ -36,15 +36,15 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
 - **Request Body:**
   ```json
   {
-    "name": string,  // The name of the device
-    "ip": string     // The unique IP address of the device
+    "name": "string",  // The name of the device
+    "ip": "string"     // The unique IP address of the device
   }
   ```
 - **Response:**
   ```json
   {
-    "status": "success" or "error",   // The operation status
-    "token": string                   // The generated API token for the device
+    "status": "success or error",   // The operation status
+    "token": "string"                   // The generated API token for the device
   }
   ```
 - **HTTP Status Codes:**
@@ -78,8 +78,8 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
 - **Response:**
   ```json
   {
-    "status": "success" or "error",   // The operation status
-    "device": string     // The name of the device
+    "status": "success or error",   // The operation status
+    "device": "string"     // The name of the device
   }
   ```
 - **HTTP Status Code:**
@@ -109,15 +109,15 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
 - **Request Body:**
   ```json
   {
-    "changed_cell": int,   // The identifier of the cell that was updated
-    "state": bool          // The new state of the cell
+    "changed_cell": "int",   // The identifier of the cell that was updated
+    "state": "bool"          // The new state of the cell
   }
   ```
 - **Response:**
   ```json
   {
-    "status": "success" or "error",   // The operation status
-    "device": string                  // The name of the device
+    "status": "success or error",   // The operation status
+    "device": "string"                  // The name of the device
   }
   ```
 - **HTTP Status Codes:**
@@ -153,10 +153,10 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
 - **Response:**
   ```json
   {
-    "status": "success" or "error",   // The operation status
-    "device": string,                 // The name of the device
+    "status": "success or error",   // The operation status
+    "device": "string",                 // The name of the device
     "cells": {                        // Data about the cell's state
-      "cell_id": [user_id, state],
+      "cell_id": ["user_id", "state"],
       ...
     }
   }
@@ -192,9 +192,9 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
 - **Response:**
   ```json
   {
-    "status": "success" or "error",   // The operation status
-    "device": string,                 // The name of the device
-    "token": int                      // The secret token for registration
+    "status": "success or error",   // The operation status
+    "device": "string",                 // The name of the device
+    "token": "int"                      // The secret token for registration
   }
   ```
 - **HTTP Status Code:**
