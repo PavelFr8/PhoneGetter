@@ -34,7 +34,7 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
 - **Description:** Creates a new device and generates a unique API token for it.
   - **_Note: This endpoint is intended for development purposes only. In the finished product, this endpoint should be closed to regular users._**
 - **Request Body:**
-  ```json
+  ```
   {
     "name": "string",  // The name of the device
     "ip": "string"     // The unique IP address of the device
