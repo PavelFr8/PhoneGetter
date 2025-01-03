@@ -54,7 +54,7 @@ Together, these components form a single ecosystem that simplifies the process o
 #### 2️⃣ **Set Up Virtual Environment**
 
  ```bash
- python -m venv venv
+ python3 -m venv venv
  source venv/bin/activate   # On Windows, use `venv\Scripts\activate`
  ```
 
