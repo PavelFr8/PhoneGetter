@@ -3,6 +3,7 @@ from werkzeug.http import HTTP_STATUS_CODES
 from werkzeug.exceptions import HTTPException
 
 from app.api import module
+from app import logger
 
 
 def error_response(status_code, message=None):
@@ -22,8 +23,10 @@ def handle_exception(e):
 
 @module.errorhandler(404)
 def not_found(error):
+    logger.error(f"API 403 error: {error}")
     return jsonify({'error': 'Not found'}), 404
 
 @module.errorhandler(500)
 def internal_error(error):
+    logger.error(f"API 500 error: {error}")
     return jsonify({'error': 'Internal server error'}), 500

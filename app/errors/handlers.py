@@ -6,7 +6,7 @@ from . import module
 
 @module.app_errorhandler(404)
 def not_found_error(error):
-    logger.error(f"404 error: {error}")
+    # logger.error(f"404 error: {error}")
     return render_template('errors/404.html'), 404
 
 @module.app_errorhandler(500)
@@ -32,6 +32,7 @@ def method_not_allowed_error(error):
 
 @module.app_errorhandler(401)
 def method_not_allowed_error(error):
+    logger.error(f"401 error: {error}")
     return render_template('errors/401.html'), 401
 
 @module.app_errorhandler(Exception)
