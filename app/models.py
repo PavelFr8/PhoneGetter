@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import pytz
 
 from flask_login import UserMixin
-from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 
 import sqlalchemy as sa

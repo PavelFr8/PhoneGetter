@@ -46,7 +46,7 @@ def create_app():
 
     if app.debug == True:
         try:
-            toolbar = DebugToolbarExtension(app)
+            DebugToolbarExtension(app)
         except Exception as e:
             logger.error(f"Failed to initialize DebugToolbarExtension: {e}")
 

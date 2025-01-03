@@ -18,7 +18,7 @@ All requests except `/create_device` require authentication using an API token. 
 Authorization: <token>
 ```
 
-If your token contains special characters, such as `$`, that may be not interpreted by the shell. For example you can use "\" before "$"":
+If your token contains special characters, such as `$`, that may be not interpreted by the shell. For example, you can use "\" before "$"":
 
 ```
 Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f18e6e9b59f639ff319319ae5dae5ed3fa85cc985
