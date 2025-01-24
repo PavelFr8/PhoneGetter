@@ -11,7 +11,7 @@ from . import module
 
 
 @module.route('/create_device', methods=['POST'])
-@json_is_valid({"name": str, "ip": str})
+@json_is_valid({"name": str})
 def create_device():
     """
     Creates a new device and generates an individual API token for it.
@@ -26,14 +26,11 @@ def create_device():
         - HTTP status code 201.
     """
     name = request.json['name']
-    ip = request.json['ip']
-
-    device = db.session.query(Device).filter_by(ip=ip).first()
 
     # Create new device
-    if not device:
-        device = Device(name=name, ip=ip)
-    else:
+    try:
+        device = Device(name=name)
+    except:
         return jsonify({"status": "error", "message": "Device with that ip already exist"}), 400
 
     # Generate API token

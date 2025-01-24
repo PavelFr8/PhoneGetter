@@ -64,15 +64,12 @@ class Device(db.Model):
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.String, nullable=False)
-    ip = sa.Column(sa.String, nullable=False, unique=True)
     cells = sa.Column(sa.JSON, nullable=True, default=json.dumps({}))
+    api_token = sa.Column(sa.String, unique=True, nullable=False) # API token for the device
     owner_id = sa.Column(sa.Integer, sa.ForeignKey("users.id"))
 
     # Relationship: Device belongs to one user
     owner = orm.Relationship('User', back_populates='device', uselist=False)
-
-    # API token for the device
-    api_token = sa.Column(sa.String, unique=True, nullable=False, index=True)
 
     # Method to generate API token
     def generate_api_token(self):

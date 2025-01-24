@@ -36,8 +36,7 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
 - **Request Body:**
   ```
   {
-    "name": string,  // The name of the device
-    "ip": string     // The unique IP address of the device
+    "name": string  // The name of the device
   }
   ```
 - **Response:**
@@ -57,7 +56,6 @@ Authorization: pbkdf2:sha256:600000\$xHE71eVNhO0jUC8B\$d0e7148c912c353b12ca831f1
   -H "Content-Type: application/json" \
   -d '{
     "name": "Class 255",
-    "ip": "255.255.255.255"
   }'
   ```
 - **Example Response:**
