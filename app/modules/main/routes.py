@@ -8,8 +8,3 @@ from . import module
 @module.route('/')
 def main():
     return render_template('main/main.html', title=_l('About Us'))
-
-
-@module.route('/js')
-def main2():
-    return send_file("s.txt")
